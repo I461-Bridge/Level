@@ -11,7 +11,7 @@ Although there are apps that allow players to store character sheets, which argu
 
 Through our design, we hope to **automate** the information management and consumption process for Dungeons and Dragons while allowing players to have more **choice** in the information that they want to keep track of, which has the **flexibility** to accommodate the use of other Dungeons and Dragons campaign management tools.
 
-**Roles and Responsibilties:**
+**Roles and Responsibilities:**
 
 Product Manager (Sopheak Neak): Sopheak oversees the requirements of the product, has the executive decision in product development and manages all areas in business function of the product. 
 
