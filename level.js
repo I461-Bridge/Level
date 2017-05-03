@@ -4,13 +4,13 @@ var LevelManager = (function () {
     
     function LevelManager() {
         // arrays of LevelRecipes, StepDescriptions
-        this.LevelRecipies = [];
+        this.LevelRecipes = [];
         this.StepDescriptions = [];
         this.Choices = [];
     }
 
     // Add LevelRecipe (characterClass, level, hitPoint, steps)
-    LevelManager.prototype.addLevelRecipe = function (characterClass, level, hitPoint) {
+    LevelManager.addLevelRecipe = function (characterClass, level, hitPoint) {
         var contains = false;
         for (var i = 0, len = LevelRecipes.length; i < len; i++) {
             if(LevelRecipes[i].level == level && LevelRecipes[i].characterClass == characterClass){
@@ -26,7 +26,7 @@ var LevelManager = (function () {
     };
 
     // Add StepDescriptions (title, explaination, choiceNames)
-    LevelManager.prototype.addStepDescription = function (title, explaination, choiceNames) {
+    LevelManager.addStepDescription = function (title, explaination, choiceNames) {
         var contains = false;
         for (var i = 0, len = LevelRecipes.length; i < len; i++) {
             if(StepDescriptions[i].title == title){
@@ -44,7 +44,7 @@ var LevelManager = (function () {
     };
 
     // Add StepChoices (title, explaination)
-    LevelManager.prototype.addStepChoices = function (title, explaination) {
+    LevelManager.addStepChoices = function (title, explaination) {
         var contains = false;
         for (var i = 0, len = LevelRecipes.length; i < len; i++) {
             if(Choices[i].title == title){
@@ -60,29 +60,29 @@ var LevelManager = (function () {
     };
 
     // Add Step to Recipe (memberName, protestName)
-    LevelManager.prototype.addStepToRecipe = function (stepName, characterClass, level) {
-        var recipe = searchName(this.LevelRecipies, characterClass, level);
+    LevelManager.addStepToRecipe = function (stepName, characterClass, level) {
+        var recipe = searchName(this.LevelRecipes, characterClass, level);
         var step = searchName(this.StepDescriptions, stepName);
         recipes.pushSteps(step);
     };
 
     // Retrieves names of all available Character Classes
-    LevelManager.prototype.getClasses = function () {
-        return classArray(this.LevelRecipies);
+    LevelManager.getClasses = function () {
+        return classArray(this.LevelRecipes);
     };
 
     // Retrieves specific Level Recipe
-    LevelManager.prototype.getRecipe = function (characterClass, level) {
-        return findRecipe(this.LevelRecipies, characterClass, level);
+    LevelManager.getRecipe = function (characterClass, level) {
+        return findRecipe(this.LevelRecipes, characterClass, level);
     };
 
     // Retrieves specific Step Description
-    LevelManager.prototype.getStepDescription = function (title) {
+    LevelManager.getStepDescription = function (title) {
         return findByTitle(this.StepDescriptions, title);
     };
 
     // Retrieves specific Choice
-    LevelManager.prototype.getChoice = function (title) {
+    LevelManager.getChoice = function (title) {
         return findByTitle(this.Choices, title);
     };
 
