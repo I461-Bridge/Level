@@ -1,0 +1,149 @@
+"use strict";
+
+var ResistanceManager = (function () {
+    function ResistanceManager() {
+        // arrays of Members, Protests, Movements
+        this.members = [];
+        this.protests = [];
+        this.movements = [];
+    }
+    // Add Member (name, email, zip)
+    ResistanceManager.prototype.addMember = function (name, email, zip) {
+        var newMember = new Member(name, email, zip);
+        this.members.push(newMember);
+    };
+    // Add Protest (newProtestName, zipcode, date)
+    ResistanceManager.prototype.addProtest = function (name, zip, date) {
+        var attendance = [];
+        var movement = [];
+        var newProtest = new Protest(name, zip, date, attendance, movement);
+        this.protests.push(newProtest);
+        return newProtest.getName();
+    };
+    // Add Movement (newMovementName)
+    ResistanceManager.prototype.addMovement = function (name) {
+        var newMovement = new Movement(name);
+        this.movements.push(newMovement);
+        return newMovement.getName();
+    };
+    // Add Member To Protest (memberName, protestName)
+    ResistanceManager.prototype.addMemberToProtest = function (memberName, protestName) {
+        var ourProtest = searchName(this.protests, protestName);
+        var ourMember = searchName(this.members, memberName);
+        ourProtest.pushAttendance(ourMember);
+    };
+    // Add Protest to Movement (protestName, movementName)
+    ResistanceManager.prototype.addProtestToMovement = function (protestName, movementName) {
+        var ourProtest = searchName(this.protests, protestName);
+        var ourMovement = searchName(this.movements, movementName);
+        ourProtest.movement.push(ourMovement);
+    };
+    ResistanceManager.prototype.findMemberNames = function () {
+        return nameArray(this.members);
+    };
+    ResistanceManager.prototype.findProtestNames = function () {
+        return nameArray(this.protests);
+    };
+    ResistanceManager.prototype.findMovementNames = function () {
+        return nameArray(this.movements);
+    };
+    // Modify Protest (protestName, newTitle, newTime);
+    ResistanceManager.prototype.modifyProtest = function (protestName, newTitle, newTime) {
+        var protest = searchName(this.protests, protestName);
+        if (newTime) {
+            protest.time = newTime;
+        }
+        else {
+            protest.name = newTitle;
+        }
+    };
+    // Retrieves names of protesters attending given protest
+    ResistanceManager.prototype.getProtesters = function (protestName) {
+        var protest = searchName(this.protests, protestName);
+        var people = protest.attendance;
+        return nameArray(people);
+    };
+    // Retrieves names of protesters who are less than a given distance away from given protest
+    ResistanceManager.prototype.getUsersNearProtest = function (protestName, distance) {
+        var protest = searchName(this.protests, protestName);
+        var close = nearby(this.members, protest.zip, distance);
+        return nameArray(close);
+    };
+    // Retrieves names of protests that are less than a given distance away from given location
+    ResistanceManager.prototype.getNearbyProtests = function (zip, distance) {
+        var protests = nearby(this.protests, zip, distance);
+        return nameArray(protests);
+    };
+    return ResistanceManager;
+}());
+exports.ResistanceManager = ResistanceManager;
+// Gives first thing in a given array that's name matches given name
+function searchName(collection, name) {
+    var find;
+    collection.forEach(function (element) {
+        var elementName = element.getName();
+        if (elementName === name) {
+            find = element;
+        }
+    });
+    return find;
+}
+// Gives names of everything in given array
+function nameArray(collection) {
+    var names = [];
+    // IT GETS ANGRY HERE WHEN RUNNING getProtesters()
+    collection.forEach(function (element) {
+        names.push(element.getName());
+    });
+    return names;
+}
+// Gives all things in given array that are within given distance from given location
+function nearby(collection, locationZip, distance) {
+    var close = [];
+    collection.forEach(function (element) {
+        var difference = Number(element.zip) - Number(locationZip);
+        if (Math.abs(difference) <= distance) {
+            close.push(element);
+        }
+    });
+    return close;
+}
+var Member = (function () {
+    function Member(name, email, zip) {
+        this.name = name;
+        this.email = email;
+        this.zip = zip;
+    }
+    Member.prototype.getName = function () {
+        var ourName = this.name;
+        return ourName;
+    };
+    return Member;
+}());
+var Protest = (function () {
+    function Protest(name, zip, date, attendance, movement) {
+        this.name = name;
+        this.zip = zip;
+        this.date = date;
+        this.attendance = attendance;
+        this.movement = movement;
+        this.attendance = attendance;
+    }
+    Protest.prototype.getName = function () {
+        var ourName = this.name;
+        return ourName;
+    };
+    Protest.prototype.pushAttendance = function (newMember) {
+        this.attendance.push(newMember);
+    };
+    return Protest;
+}());
+var Movement = (function () {
+    function Movement(name) {
+        this.name = name;
+    }
+    Movement.prototype.getName = function () {
+        return this.name;
+    };
+    return Movement;
+}());
