@@ -4,7 +4,9 @@ import './App.css';
 import _ from 'lodash';
 import { Button, Modal, SplitButton, MenuItem } from 'react-bootstrap';
 import data from './../data/characterClasses.json';
-import update from 'immutability-helper';
+import HeaderTitle from './Header.js';
+import Feature from './Feature.js'
+//import update from 'immutability-helper';
 //import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 //import $ from 'jquery';
 
@@ -59,11 +61,7 @@ class App extends Component {
       return <MenuItem eventKey={value} key={value}>Level {value}</MenuItem>
     });
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
+      <div className="container">
         {this.state.recipeStep === 0 &&
           <div>
             <div>
@@ -82,7 +80,9 @@ class App extends Component {
           </div>
         }
         {this.state.recipeStep === 1 &&
-          <div><p>First Page</p>
+          <div>
+            <Feature classTitle={this.state.selectedClass} levelTitle={this.state.selectedLevel} 
+            classObject={this.state.selectedCombo.LevelRecipes[this.state.selectedLevel - 1]} nextHandler={this.handleNext} backHandler={this.handleBack}/>
             <Button bsStyle='primary' href='.'>Back</Button>
             <Button bsStyle='primary' onClick={this.handleNext.bind(this)}>Next</Button>
           </div>
