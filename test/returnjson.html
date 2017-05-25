@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Get Json</title>
+</head>
+<body>
+  <h1 id="name">Waiting...</h1>
+  <h2 id="url"></h2>
+  <p id="json"></p>
+
+  <script type="text/javascript" async="" src="https://www.google-analytics.com/plugins/ua/linkid.js"></script>
+  <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+  <script src="https://static.jsbin.com/js/render/edit.js?4.0.2"></script>
+  <script>
+        'use strict';
+
+        function findUrl(databaseUrl, find, docName, docUrl, docJson){
+            var url = '';
+            fetch(databaseUrl).then(function (resp) {
+                return resp.json();
+            }).then(function (json) {
+                json.results.forEach(function(element) {
+                    console.log(element);
+                    if(element.name == find){
+                        findData(element.url, docName, docUrl, docJson);
+                        return true;
+                    }
+                }, this);
+            })['catch'](function (error) {
+                console.log(JSON.stringify(error));
+            });
+            return false;
+        }
+
+        // Returns the JSON that is stored at the given URL that matches 
+        // the given target (i.e, 'http://www.dnd5eapi.co/api/features/')
+        async function findApiJSON(databaseURL) {
+            const response = await fetch(databaseURL, {});
+            const json = await response.json();
+
+            return json;
+        }
+
+
+
+        /*function findURL(json, target) {
+            var targetURL = "";
+            json.results.forEach(function (element) {
+                if (element.name == target) {
+                    targetURL = element.url;
+                }
+            }, this);
+            return targetURL;
+        }*/
+
+        function findData(url, docName, docUrl, docJson){
+            fetch(url.concat(".json")).then(function (resp) {
+                return resp.json();
+            }).then(function (element) {
+                print(element, docName, docUrl, docJson);
+            })['catch'](function (error) {
+                console.log(JSON.stringify(error));
+            });
+        }
+        function sendData(promise) {
+
+        }
+        function print(data, docName, docUrl, docJson){
+            docName.innerHTML = data.name;
+            docUrl.innerHTML = data.url;
+            docJson.innerHTML = JSON.stringify(data);
+            return data;
+        }
+
+        // var thing = 'Rage';
+        var thing = 'Alarm';
+
+        var docName = document.getElementById('name');
+        var docUrl = document.getElementById('url');
+        var docJson = document.getElementById('json');
+
+        var featuresURL = 'http://www.dnd5eapi.co/api/features/';
+        var spellsURL = 'http://www.dnd5eapi.co/api/spells/'
+        var found = false;
+        
+       /* if (!found){
+            found = findUrl(featuresURL, thing, docName, docUrl, docJson);
+        }
+
+        if (!found){
+            found = findUrl(spellsURL, thing, docName, docUrl, docJson);
+        }
+        console.log(found); */
+        var x = fetch(featuresURL)
+            .then((response)) => response.json()
+            .then((responseJSON) => {
+                return responseJSON;
+            });
+
+        var featuresJSON = findApiJSON(featuresURL);
+        console.log(featuresJSON);
+        var alarmURL = findURL(featuresJSON, 'Alarm');
+        console.log(alarmURL);
+
+    </script>
+</body>
