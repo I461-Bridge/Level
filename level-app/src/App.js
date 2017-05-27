@@ -5,7 +5,9 @@ import _ from 'lodash';
 import { Button, Modal, SplitButton, MenuItem } from 'react-bootstrap';
 import data from './../data/characterClasses.json';
 import HeaderTitle from './Header.js';
-import Feature from './Feature.js'
+import Feature from './Feature.js';
+import request from 'request';
+import controller from './Controller.js';
 //import update from 'immutability-helper';
 //import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 //import $ from 'jquery';
@@ -21,7 +23,8 @@ class App extends Component {
       levelsArray: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
       levelButtonTitle: "",
       openLanding: true,
-      recipeStep: 0
+      recipeStep: 0,
+      test: {}
     };
   }
   handleClass = (eventKey) => {
@@ -52,6 +55,26 @@ class App extends Component {
     var nextLevel = this.state.recipeStep - 1;
     this.setState({ recipeStep: nextLevel });
   }
+  handleTest = (event) => {
+    let thisComponent = this;
+    controller.search('http://www.dnd5eapi.co/api/features/1')
+      .then(function(data){
+        thisComponent.setState({test:data})
+      })
+  }
+
+  // getData = (url) => {
+  //   return fetch(url)
+  //     .then((response) => response.json())
+  //     .then((responseJson) => {
+  //       //console.log(responseJson);
+  //       return responseJson;
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // }
+
   render() {
     var availableClasses = _.map(data.Classes, (value, index) => {
       var keyname = value.Class;
@@ -76,13 +99,15 @@ class App extends Component {
             </div>
             <div>
               <Button bsStyle='primary' onClick={this.handleSubmit.bind(this)} disabled={!this.state.selectedClass || !this.state.selectedLevel}>Go</Button>
+              <Button bsStyle='primary' onClick={this.handleTest.bind(this)}>Test</Button>
             </div>
           </div>
         }
         {this.state.recipeStep === 1 &&
           <div>
-            <Feature classTitle={this.state.selectedClass} levelTitle={this.state.selectedLevel} 
-            classObject={this.state.selectedCombo.LevelRecipes[this.state.selectedLevel - 1]} nextHandler={this.handleNext} backHandler={this.handleBack}/>
+            <Feature classTitle={this.state.selectedClass} levelTitle={this.state.selectedLevel}
+              classObject={this.state.selectedCombo.LevelRecipes[this.state.selectedLevel - 1]}
+              nextHandler={this.handleNext} backHandler={this.handleBack} test={this.state.test} />
             <Button bsStyle='primary' href='.'>Back</Button>
             <Button bsStyle='primary' onClick={this.handleNext.bind(this)}>Next</Button>
           </div>
