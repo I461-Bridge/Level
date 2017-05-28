@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import data from './../data/characterClasses.json';
 import _ from 'lodash';
-import { Button, Modal, SplitButton, MenuItem } from 'react-bootstrap';
-import { NavLink, Link, Redirect } from 'react-router-dom';
+import { Button, SplitButton, MenuItem } from 'react-bootstrap';
+import { Redirect } from 'react-router-dom';
 
 
 class MainSelection extends Component {
@@ -36,22 +36,12 @@ class MainSelection extends Component {
                 };
             }
         })
-        this.setState({redirect: true,selectedCombo:foundCombo});
+        this.setState({ redirect: true, selectedCombo: foundCombo });
     }
     componentWillUnmount = () => {
         this.props.handleFound(this.state.selectedCombo);
     }
 
-    // componentWillReceiveProps = (nextProps) => {
-    //     this.setState({selectedCombo: nextProps.handleFound});
-    // }
-
-    // completed = () => {
-    //     if (this.state.selectedClass === '' || this.state.selectedLevel === '') {
-    //         return false;
-    //     }
-    //     return true;
-    // }
     render() {
         var availableClasses = _.map(data.Classes, (value, index) => {
             var keyname = value.Class;

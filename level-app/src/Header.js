@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-import {Jumbotron} from 'react-bootstrap';
+import { Jumbotron } from 'react-bootstrap';
 
 class HeaderTitle extends Component {
-    constructor(props) {
-        super(props);
-    };
-
     render() {
         return (
             <div className='container'>

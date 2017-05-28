@@ -27,7 +27,6 @@ class Feature extends Component {
     };
     handleBackFeature = (event) => {
         var next = this.state.current - 1;
-        //this.setState({ current: next });
         this.setState({ current: next, received: {} });
         controller.search(this.state.links[next - 1])
             .then(data => {
@@ -42,13 +41,6 @@ class Feature extends Component {
         }
 
     }
-    // componentWillMount() {
-    //     //let thisComponent = this;
-    //     controller.search(this.state.links[0])
-    //         .then(data => {
-    //             this.setState({ test: data })
-    //         })
-    // };
 
     componentWillMount() {
         if (Object.keys(this.props.classObject).length !== 0) {
@@ -56,48 +48,11 @@ class Feature extends Component {
             this.setState({ pages: combo.length - 1, options: combo });
             controller.search(this.state.links[0])
                 .then(data => {
-                    //return data;
                     this.setState({ received: data })
                 })
-            //this.setState({ pages: combo.length - 1, options: combo, test: foundData });
         }
     };
-
-    // componentWillReceiveProps(newProps) {
-    //     if (newProps !== this.props) {
-    //         if (Object.keys(newProps.classObject).length !== 0) {
-    //             let combo = newProps.classObject.classObject.LevelRecipes[newProps.classObject.classLevel - 1];
-    //             this.setState({ pages: combo.length - 1, options: combo });
-    //             controller.search(this.state.links[0])
-    //                 .then(data => {
-    //                     //return data;
-    //                     this.setState({ test: data })
-    //                 })
-    //             //this.setState({ pages: combo.length - 1, options: combo, test: foundData });
-    //         }
-    //     }
-    // };
-
-    // componentDidMount() {
-    //     console.log(this.props.classObject);
-    //     let combo = this.props.classObject.classObject;
-    //     console.log("post combo",combo.LevelRecipes);
-    //     this.setState({options:combo});
-
-    // };
-
-    // componentWillReceiveProps(nextProps){
-    //     console.log("recieve: ",nextProps);
-    //     let thisComponent = this;
-    //     controller.search('http://www.dnd5eapi.co/api/features/2')
-    //         .then(data => {
-    //             this.setState({ test: data })
-    //         })
-    // };
-
     render() {
-        //var found = this.state.test.desc;
-        //console.log(found)
         if (this.state.received.desc !== undefined) {
             var para = this.state.received.desc.map(function (data, index) {
                 return <p key={index}>{data}</p>
