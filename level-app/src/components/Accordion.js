@@ -19,13 +19,7 @@ class Accordion extends React.Component {
 		*/
 	
 		return (
-			<div
-				className={className}
-			>
-				/* accordion */
-			
-
-			<div/>
+			<p Hello world</p>
 		);
 	}
 }
