@@ -12,7 +12,7 @@ class Feature extends Component {
             options: [],
             current: 1,
             received: {},
-            links: ['http://www.dnd5eapi.co/api/features/1', 'http://www.dnd5eapi.co/api/features/2'],
+            links: ['Spellcasting'],//'http://www.dnd5eapi.co/api/features/1', 'http://www.dnd5eapi.co/api/features/2'],
             redirect: false,
             path: ''
         };

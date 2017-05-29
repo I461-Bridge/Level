@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
 import './App.css';
 import recipes from './../data/characterClasses.json';
 import _ from 'lodash';
@@ -21,11 +20,6 @@ class App extends Component {
   }
 
   render() {
-    
-    // var text = recipes.Fighter.LevelRecipes.map(function (d){
-    //   return <p>{d}</p>
-    // });
-    
     return (
       <Router>
         <div className="demo-big-content">
