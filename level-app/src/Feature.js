@@ -12,26 +12,60 @@ class Feature extends Component {
             options: [],
             current: 1,
             received: {},
-            links: ['Spellcasting'],//'http://www.dnd5eapi.co/api/features/1', 'http://www.dnd5eapi.co/api/features/2'],
+            links: ['Spellcasting', 'Fast Movement', 'Frenzy'],//'http://www.dnd5eapi.co/api/features/1', 'http://www.dnd5eapi.co/api/features/2'],
             redirect: false,
             path: ''
         };
     }
+    // handleNextFeature = (event) => {
+    //     var next = this.state.current + 1;
+    //     this.setState({ current: next, received: {} });
+    //     controller.searchFeatures(this.state.links[next - 1])
+    //         .then(data => {
+    //             this.setState({ received: data })
+    //         })
+    // };
+
     handleNextFeature = (event) => {
         var next = this.state.current + 1;
         this.setState({ current: next, received: {} });
-        controller.search(this.state.links[next - 1])
+        
+        var JSON;
+        controller.getFeatures()
             .then(data => {
-                this.setState({ received: data })
+                JSON = data
             })
+        var url;
+        controller.getUrl(JSON, this.state.links[next - 1])
+            .then(data => {
+                url = data
+            });
+        controller.getElement(url)
+            .then(data => {
+                this.setState({ received: data})
+            });
     };
     handleBackFeature = (event) => {
         var next = this.state.current - 1;
         this.setState({ current: next, received: {} });
-        controller.search(this.state.links[next - 1])
+        // controller.searchFeatures(this.state.links[next - 1])
+        //     .then(data => {
+        //         this.setState({ received: data })
+        //     })
+        var JSON;
+        controller.getFeatures()
             .then(data => {
-                this.setState({ received: data })
+                JSON = data
             })
+        var url;
+        controller.getUrl(JSON, this.state.links[next - 1])
+            .then(data => {
+                url = data
+            });
+        controller.getElement(url)
+            .then(data => {
+                this.setState({ received: data})
+            });
     };
     handler = (event) => {
         let path = event.target.value;
@@ -39,19 +73,33 @@ class Feature extends Component {
         if (path === '/') {
             window.location.reload();
         }
-
     }
 
     componentWillMount() {
         if (Object.keys(this.props.classObject).length !== 0) {
             let combo = this.props.classObject.classObject.LevelRecipes[this.props.classObject.classLevel - 1];
             this.setState({ pages: combo.length - 1, options: combo });
-            controller.search(this.state.links[0])
+            // controller.searchFeatures(this.state.links[0])
+            //     .then(data => {
+            //         this.setState({ received: data })
+            //     })
+            var JSON;
+            controller.getFeatures()
                 .then(data => {
-                    this.setState({ received: data })
+                    JSON = data
                 })
+            var url;
+            controller.getUrl(JSON, this.state.links[0])
+                .then(data => {
+                    url = data
+                });
+            controller.getElement(url)
+                .then(data => {
+                    this.setState({ received: data})
+                });
         }
     };
+
     render() {
         if (this.state.received.desc !== undefined) {
             var para = this.state.received.desc.map(function (data, index) {
