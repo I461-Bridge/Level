@@ -51,11 +51,12 @@ class Feature extends Component {
     }
 
     searchForObject = (givenURL) => {
-        console.log("in search for object: "+ givenURL);
+        console.log("now in API call search for object: "+ givenURL);
         if (givenURL !== '') {
             controller.matchedNameSearch(givenURL)
                 .then(data => {
-                    console.log("after: ", data);
+                    console.log("object found and setState: ", data);
+                    //this.state.received = data; // test hard update
                     this.setState({ received: data });
                     console.log(this.state.received);
                 })
@@ -63,18 +64,18 @@ class Feature extends Component {
     }
 
     findMatchedURL = (fetched, currentNumber,currentOption) => {
-        console.log('in method ' + currentNumber);
+        //console.log('in method ' + currentNumber);
         var givenFeatureName = currentOption[currentNumber];
-        console.log("search ",givenFeatureName);
+        console.log("now in search function looking for: ",givenFeatureName);
         var foundIndex = _.findIndex(fetched, function (o) { return o.name == givenFeatureName });
-        console.log("index: ", foundIndex);
+        //console.log("index: ", foundIndex);
         if (foundIndex !== -1) {
             return fetched[foundIndex].url;
         }
     }
     shouldComponentUpdate(nextProps, nextState) {
-        console.log("hi");
-        console.log("both: " + nextState.current !== this.state.current && nextState.received !== this.state.received);
+        console.log("state changed so now in shouldComponentUpdate");
+        //console.log("both: " + nextState.current !== this.state.current && nextState.received !== this.state.received);
         return nextState.current !== this.state.current && nextState.received !== this.state.received;
     }
 
@@ -89,11 +90,11 @@ class Feature extends Component {
 
     // }
     componentWillUpdate(nextProps, nextState) {
-        console.log('updated');
+        console.log('now will update');
         //if(nextState)
         if (nextState.fetchedObject !== this.state.fetchedObject) {
             //console.log(nextState.current);
-            console.log("next :",nextState.options)
+            console.log("find URL for API call:",nextState.options)
             var newURL = this.findMatchedURL(nextState.fetchedObject, nextState.current,nextState.options);
             //console.log("url "+newURL);   
             this.searchForObject(newURL);
@@ -104,6 +105,7 @@ class Feature extends Component {
     //componentDidUpdate()
     componentWillMount() {
         console.log("will mount");
+        console.log("initial state: ", this.state);
         //this.setState({current: 1});
         // if (Object.keys(this.props.classObject).length !== 0) {
         //     let combo = this.props.classObject.classObject.LevelRecipes[this.props.classObject.classLevel - 1];
@@ -130,7 +132,8 @@ class Feature extends Component {
     };
     firstSearch = (fetchedData, currentNumber, combo) => {
         //this.setState({ pages: combo.length - 1, options: combo});
-        console.log("first combo: ", combo);
+        console.log("In function: first combo looking: ", combo);
+        console.log("In same function: now update state")
         this.setState({ pages: combo.length - 1, options: combo, fetchedObject: fetchedData, current: 1, received: {} });
 
         // var givenFeatureName = this.state.options[currentNumber];
@@ -142,9 +145,10 @@ class Feature extends Component {
 
 
     componentDidMount() {
-        //console.log("mounted ", this.state.fetchedObject);
+        //console.log("mounted ");
         if (Object.keys(this.props.classObject).length !== 0) {
-            console.log('object found')
+            console.log("mounted with data object")
+            console.log('object passed from previos found, now perform API call')
             let combo = this.props.classObject.classObject.LevelRecipes[this.props.classObject.classLevel - 1];
             //this.setState({ pages: combo.length - 1, options: combo});
             controller.initialSearch(this.state.typeName)
@@ -160,6 +164,8 @@ class Feature extends Component {
             //     })
             // let newURL = this.findMatchedURL(nextState.fetchedObject,nextState.current);
             //     this.searchForObject(newURL);
+        } else {
+            console.log('mounted without data object')
         }
     }
     render() {
@@ -180,8 +186,8 @@ class Feature extends Component {
         if (this.state.redirect) {
             return <Redirect push to={this.state.path} />;
         }
-
         return (
+
             <div>
                 <div>
                     <HeaderTitle classTitle={this.props.classObject.className} levelTitle={this.props.classObject.classLevel}
