@@ -22,7 +22,7 @@ class App extends Component {
     return (
       <Router>
         <div className="demo-big-content">
-          <Layout fixedHeader fixedDrawer>
+          <Layout fixedHeader>
             <Header title="Title" >
             </Header>
             <Drawer title="Title">

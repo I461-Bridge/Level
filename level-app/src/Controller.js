@@ -1,11 +1,22 @@
+import _ from 'lodash';
 
-//module with functions to download a model from online
+var apiURL = 'http://www.dnd5eapi.co/api/';
 var controller = {
-  search: function(query) {
-    
-    return fetch(query)
-      .then(function(res) { return res.json()})
-
+  initialSearch: function (query) {
+    return fetch(apiURL + query + '/')
+      .then(function (res) {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+  },
+  matchedNameSearch: function (url) {
+    return fetch(url)
+      .then(function (res) {
+        if (res.ok) {
+          return res.json()
+        }
+      })
   }
 }
 
