@@ -1,16 +1,22 @@
 import React, {Component} from 'react';
-import Accordion.Component from 'Accordion.Component.js'
+import Accordion.Component from '/Accordion.Component.js'
+import './Accordion.css'
+import _ from 'lodash';
 
-Accordion = React.createClass({
+
+class Accordion extends Component {
     getInitialState: function() {
+      // TO-DO: Add listener for property changes and reset state after change
         return {
+           // state is set to selected ection if it is provided
             selected: this.props.selected
         };
     },
 
-    render: function() {
+    render() {
+      // enable variable number of child sections
         var children = React.Children.map(
-            this.props.children, this.enhanceSection);
+            this.props.children, this.enhanceSection)
 
         return (
             <div className="accordion">
@@ -18,6 +24,7 @@ Accordion = React.createClass({
             </div>
         );
     },
+
 
     enhanceSection: function(child) {
         var selectedId = this.state.selected,
