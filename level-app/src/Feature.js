@@ -37,7 +37,10 @@ class Feature extends Component {
     handleBackFeature = (event) => {
         let next = this.state.current - 1;
         this.setState({ current: next, received: {} });
+        let featureUrl = this.findMatchedURL(this.state.fetchedObject, next, this.state.options);
+        this.searchForObject(featureUrl);
     };
+
     handler = (event) => {
         let path = event.target.value;
         this.setState({ redirect: true, path: path });
@@ -89,15 +92,15 @@ class Feature extends Component {
                 .then(data => {
                     this.firstSearch(data.results, this.state.current, combo);
                 })
-            var url;
-            controller.getUrl(JSON, this.state.links[0])
-                .then(data => {
-                    url = data
-                });
-            controller.getElement(url)
-                .then(data => {
-                    this.setState({ received: data })
-                });
+            // var url;
+            // controller.getUrl(JSON, this.state.links[0])
+            //     .then(data => {
+            //         url = data
+            //     });
+            // controller.getElement(url)
+            //     .then(data => {
+            //         this.setState({ received: data })
+            //     });
         }
     };
 
