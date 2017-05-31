@@ -3,6 +3,7 @@ import { Button } from 'react-bootstrap';
 import HeaderTitle from './Header.js';
 import controller from './Controller';
 import { Redirect } from 'react-router-dom';
+import Accordion from './Accordion.js'
 import _ from 'lodash';
 class Feature extends Component {
     constructor(props) {
