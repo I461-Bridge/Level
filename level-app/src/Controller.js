@@ -1,50 +1,21 @@
-// var featuresURL = 'http://www.dnd5eapi.co/api/features/';
-// var spellsURL = 'http://www.dnd5eapi.co/api/spells/';
 
-//module with functions to download a model from online
-
+var apiURL = 'http://www.dnd5eapi.co/api/';
 var controller = {
-
-  // search: function(find) {
-  //   return fetch(find)
-  //     .then(function(resp) { return resp.json()})
-  // },
-
-  searchFeatures : function(find) {
-    console.log(find);
-    var features;
-    controller.getFeatures()
-      .then(data => {
-        console.log("data = " +data);
-        features = data;
+  initialSearch: function (query) {
+    return fetch(apiURL + query + '/')
+      .then(function (res) {
+        if (res.ok) {
+          return res.json();
+        }
       })
-    
-    // var url = controller.getUrl(features, find);
-    // console.log(url);
-    // return controller.getElement(url);
   },
-
-  getFeatures : function() {
-    return fetch('http://www.dnd5eapi.co/api/features/')
-        .then(function(resp){ return resp.results.json()})
-  },
-
-  getSpells : function() {
-    return fetch('http://www.dnd5eapi.co/api/spells/')
-        .then(function(resp){ return resp.results.json()})
-  },
-
-  getUrl : function(data, find) {
-    data.forEach(function(element){
-      if(element.name === find){
-          return element.url;
-      }
-    })
-  },
-
-  getElement : function(url) {
+  matchedNameSearch: function (url) {
     return fetch(url)
-        .then(function (resp){ return resp.json()})
+      .then(function (res) {
+        if (res.ok) {
+          return res.json()
+        }
+      })
   }
 
 }
