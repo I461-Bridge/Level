@@ -54,34 +54,6 @@ class App extends Component {
       </Router>
     );
 
-
-    function getStep(characterClass, level, step){
-      // var name = recipes.Fighter.LevelRecipes[level - 1][step];
-      // var url;
-      console.log("TEST: trying to get Fighter Level 1- " + characterClass + ", " + (level + 1));
-      console.log("TEST: getting rage from: http://www.dnd5eapi.co/api/features/1")
-      extractText("http://www.dnd5eapi.co/api/features/1");
-    };
-
-    function createNode(element) {
-        return document.createElement(element);
-    }
-    function append(parent, el) {
-      return parent.appendChild(el);
-    }
-
-    function extractText(url){
-        const ul = document.getElementById('description');
-        
-        fetch(url)
-        .then(response => {response.json()})
-        .then(function(data){
-            var name = data.name;
-            console.log(name);
-            return name;
-        })
-    }
-
   }
 }
 

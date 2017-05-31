@@ -19,26 +19,17 @@ class Feature extends Component {
             fetchedObject: {}
         };
     }
-    // handleNextFeature = (event) => {
-    //     var next = this.state.current + 1;
-    //     this.setState({ current: next, received: {} });
-    //     controller.searchFeatures(this.state.links[next - 1])
-    //         .then(data => {
-    //             this.setState({ received: data })
-    //         })
-    // };
-
     handleNextFeature = (event) => {
         let next = this.state.current + 1;
         this.setState({ current: next, received: {} });
-        let featureUrl = this.findMatchedURL(this.state.fetchedObject, next, this.state.options);
-        this.searchForObject(featureUrl);
+        //let featureUrl = this.findMatchedURL(this.state.fetchedObject, next, this.state.options);
+        this.searchForObject(this.state.options[next]);
     };
     handleBackFeature = (event) => {
         let next = this.state.current - 1;
         this.setState({ current: next, received: {} });
-        let featureUrl = this.findMatchedURL(this.state.fetchedObject, next, this.state.options);
-        this.searchForObject(featureUrl);
+        //let featureUrl = this.findMatchedURL(this.state.fetchedObject, next, this.state.options);
+        this.searchForObject(this.state.options[next]);
     };
 
     handler = (event) => {
@@ -88,56 +79,49 @@ class Feature extends Component {
     componentWillMount() {
         if (Object.keys(this.props.classObject).length !== 0) {
             let combo = this.props.classObject.classObject.LevelRecipes[this.props.classObject.classLevel - 1];
-            controller.initialSearch(this.state.typeName)
-                .then(data => {
-                    this.firstSearch(data.results, this.state.current, combo);
-                })
-            // var url;
-            // controller.getUrl(JSON, this.state.links[0])
-            //     .then(data => {
-            //         url = data
-            //     });
-            // controller.getElement(url)
-            //     .then(data => {
-            //         this.setState({ received: data })
-            //     });
+            if (combo.length < 2) {
+                this.setState({ redirect: true, path: '/SpellSlots' })
+            } else {
+                this.firstSearch(combo);
+            }
         }
+
+        //     controller.initialSearch(this.state.typeName)
+        //         .then(data => {
+        //             this.firstSearch(data.results, this.state.current, combo);
+        //         })
+        // }
     };
 
-    firstSearch = (fetchedData, currentNumber, combo) => {
-        let featureUrl = this.findMatchedURL(fetchedData, 1, combo);
-        controller.matchedNameSearch(featureUrl)
+    firstSearch = (combo) => {
+        //let featureUrl = this.findMatchedURL(fetchedData, 1, combo);
+        controller.matchedNameSearch(combo[1])
             .then(data => {
                 console.log("after fetched", data);
-                this.setState({ pages: combo.length - 1, options: combo, fetchedObject: fetchedData, current: 1, received: data });
+                this.setState({ pages: combo.length - 1, options: combo, current: 1, received: data });
             })
     }
 
     render() {
-        // if(this.state.fetchedObject.length > 0) {
-        //     //console.log('in');
-        //     let newURL = this.findMatchedURL(this.state.fetchedObject,this.state.current);
-        //     this.searchForObject(newURL);
-        // }
+
         if (Object.keys(this.state.received).length !== 0) {
             //console.log("found something", this.state.received);
             var para = this.state.received.desc.map(function (data, index) {
                 return <p key={index}>{data}</p>
             });
+            var header = <div>
+                <HeaderTitle classTitle={this.props.classObject.className} levelTitle={this.props.classObject.classLevel}
+                    featureName={this.state.received.name} /> </div>
         }
+
         if (this.state.redirect) {
             return <Redirect push to={this.state.path} />;
         }
         return (
 
             <div>
-                {this.state.options.length > 0 &&
-                    <div>
-                        <HeaderTitle classTitle={this.props.classObject.className} levelTitle={this.props.classObject.classLevel}
-                            featureName={this.state.options[this.state.current]} />
-                        {para}
-                        {/* use the string to find description <p>{this.props.classObject[this.state.current]}</p>*/}
-                    </div>}
+                {header}
+                {para}
                 {this.state.current === 1 && this.state.pages > 1 &&
                     <div>
                         <Button onClick={this.handler.bind(this)} value='/'>Back Page</Button>

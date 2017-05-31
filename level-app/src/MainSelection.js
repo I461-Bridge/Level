@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import data from './../data/characterClasses.json';
+import classes from './../data/classes.json';
 import _ from 'lodash';
 import { Button, SplitButton, MenuItem } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
@@ -27,8 +28,9 @@ class MainSelection extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         var foundCombo;
-        _.forEach(data.Classes, (value) => {
+        _.forEach(classes.Classes, (value) => {
             if (value.Class === this.state.selectedClass) {
+                //console.log('found', value.Class);
                 foundCombo = {
                     className: this.state.selectedClass,
                     classLevel: this.state.selectedLevel,
@@ -40,10 +42,11 @@ class MainSelection extends Component {
     }
     componentWillUnmount = () => {
         this.props.handleFound(this.state.selectedCombo);
+        
     }
 
     render() {
-        var availableClasses = _.map(data.Classes, (value, index) => {
+        var availableClasses = _.map(classes.Classes, (value, index) => {
             var keyname = value.Class;
             return <MenuItem eventKey={keyname} key={index}>{keyname}</MenuItem>
         });
