@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import recipes from './../data/characterClasses.json';
 import _ from 'lodash';
 import Feature from './Feature.js';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
