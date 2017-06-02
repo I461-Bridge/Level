@@ -20,6 +20,10 @@ class App extends Component {
   restart =() => {
       window.location.reload();
   } 
+  toggle() {
+        var d = document.querySelector('.mdl-layout');
+        d.MaterialLayout.toggleDrawer();
+    }
   render() {
     console.log(window.location);
     return (
@@ -27,8 +31,11 @@ class App extends Component {
         <div className="demo-big-content">
           <Layout fixedHeader>
             <Header title="Title" >
-                {window.location.pathname !== '/' && 
-                <Link to='/'><IconButton onClick={this.restart} name='cached' style={{ position: 'absolute', bottom: '92.5%', right: '5%' }} /></Link>}
+                {window.location.pathname !== '/' && <div>
+                <IconButton onClick={this.toggle} name='build' style={{ position: 'absolute', bottom: '92.5%', right: '96%' }} />
+                <Link to='/'><IconButton onClick={this.restart} name='cached' style={{ position: 'absolute', bottom: '92.5%', right: '3%' }} /></Link>
+                </div>
+                }
             </Header>
             <Drawer title="Title">
               {Object.keys(this.state.selectedObject).length > 0 &&
