@@ -4,6 +4,7 @@ import HeaderTitle from './Header.js';
 import controller from './Controller';
 import { Redirect } from 'react-router-dom';
 import _ from 'lodash';
+import AccordionComponent from './Accordion.js'
 
 class Feature extends Component {
     constructor(props) {
@@ -112,14 +113,6 @@ class Feature extends Component {
                     featureName={classInformation.name} /> </div>;
         }
         
-        if(this.state.choicesObject.length !== 0) {
-            var choices = _.map(this.state.choicesObject, function (each,index){
-                let keyName= Object.keys(each).toString();
-                let value= each[keyName];
-                return <div key={index}><p>{keyName}</p><p>{value}</p></div>
-            })
-        }
-
         if (this.state.redirect) {
             return <Redirect push to={this.state.path} />;
         }
@@ -128,7 +121,7 @@ class Feature extends Component {
             <div>
                 {header}
                 {para}
-                {choices}
+                {this.state.choicesObject.length !== 0 && <AccordionComponent description={this.state.choicesObject} />}
                 {this.state.current === 1 && this.state.pages > 1 &&
                     <div>
                         <Button onClick={this.handler.bind(this)} value='/'>Back Page</Button>

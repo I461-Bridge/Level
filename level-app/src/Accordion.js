@@ -10,10 +10,10 @@ class AccordionComponent extends Component {
 
     render() {
         // variables
-        var list = this.props.description.map(function (d) {
+        var list = this.props.description.map(function (d, index) {
             var title = Object.keys(d).toString();
             var description = d[title];
-            return <Panel header = {title} eventKey={title}>
+            return <Panel header = {title} eventKey={title} key={index}>
                         {description}
                    </Panel>;
             }
