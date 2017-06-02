@@ -2,45 +2,42 @@ import React, { Component } from 'react';
 import './App.css';
 import _ from 'lodash';
 import Feature from './Feature.js';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 import MainSelection from './MainSelection.js';
-import { Layout, Header, Drawer, Navigation, Content } from 'react-mdl';
+import { Layout, Header, Drawer, Navigation, Content, IconButton } from 'react-mdl';
+import createHistory from 'history/createBrowserHistory'
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedObject: {}
-    }
+      }
   }
-
   handleFound = (returnedObject) => {
     this.setState({ selectedObject: returnedObject });
   }
-
+  restart =() => {
+      window.location.reload();
+  } 
   render() {
+    console.log(window.location);
     return (
-      <Router>
+      <Router history={this.history}>
         <div className="demo-big-content">
           <Layout fixedHeader>
             <Header title="Title" >
+                {window.location.pathname !== '/' && 
+                <Link to='/'><IconButton onClick={this.restart} name='cached' style={{ position: 'absolute', bottom: '92.5%', right: '5%' }} /></Link>}
             </Header>
             <Drawer title="Title">
+              {Object.keys(this.state.selectedObject).length > 0 &&
               <Navigation>
-                {Object.keys(this.state.selectedObject).length > 0 &&
                   <Link to='/Features'>Add Features</Link>
-                }
-                {Object.keys(this.state.selectedObject).length > 0 &&
                   <Link to='/SpellSlots'>Increase Spell Slots</Link>
-                }
-                {Object.keys(this.state.selectedObject).length > 0 &&
                   <Link to='/Spells'>Add Spells</Link>
-                }
-                {Object.keys(this.state.selectedObject).length > 0 &&
                   <Link to='/Cantrips'>Add Cantrips</Link>
-                }
-                <Link to='/'>Different Level or Class?</Link>
-              </Navigation>
+              </Navigation>}
             </Drawer>
             <Content>
               <div>
