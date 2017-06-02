@@ -17,19 +17,18 @@ class Feature extends Component {
             links: ['features', 'http://www.dnd5eapi.co/api/features/2'],
             redirect: false,
             path: '',
-            fetchedObject: {}
+            fetchedObject: {},
+            choicesObject: []
         };
     }
     handleNextFeature = (event) => {
         let next = this.state.current + 1;
-        this.setState({ current: next, received: {} });
-        //let featureUrl = this.findMatchedURL(this.state.fetchedObject, next, this.state.options);
+        this.setState({ current: next, received: {},choicesObject:[] });
         this.searchForObject(this.state.options[next]);
     };
     handleBackFeature = (event) => {
         let next = this.state.current - 1;
-        this.setState({ current: next, received: {} });
-        //let featureUrl = this.findMatchedURL(this.state.fetchedObject, next, this.state.options);
+        this.setState({ current: next, received: {},choicesObject:[] });
         this.searchForObject(this.state.options[next]);
     };
 
@@ -59,24 +58,6 @@ class Feature extends Component {
         }
     }
 
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     //console.log("state changed so now in shouldComponentUpdate");
-    //     //console.log("both: " + nextState.current !== this.state.current && nextState.received !== this.state.received);
-    //     return nextState.current !== this.state.current && nextState.received !== this.state.received;
-    // }
-
-    // componentWillUpdate(nextProps, nextState) {
-    //     console.log('now will update');
-    //     if (nextState.fetchedObject !== this.state.fetchedObject) {
-    //         console.log("find URL for API call:", nextState.options)
-    //         var newURL = this.findMatchedURL(nextState.fetchedObject, nextState.current, nextState.options);
-    //         //console.log("url "+newURL);   
-    //         this.searchForObject(newURL);
-    //     }
-    //     // let newURL = this.findMatchedURL(nextState.fetchedObject, nextState.current);
-    //     // this.searchForObject(newURL);
-    // }
-
     componentWillMount() {
         if (Object.keys(this.props.classObject).length !== 0) {
             let combo = this.props.classObject.classObject.LevelRecipes[this.props.classObject.classLevel - 1];
@@ -86,19 +67,35 @@ class Feature extends Component {
                 this.firstSearch(combo);
             }
         }
-
-        //     controller.initialSearch(this.state.typeName)
-        //         .then(data => {
-        //             this.firstSearch(data.results, this.state.current, combo);
-        //         })
-        // }
     };
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextState.received !== this.state.received || nextState.choicesObject !== this.state.choicesObject || nextState.path !== this.state.path;
+    }
+    componentWillUpdate(nextProps, nextState) {
+        let classInformation = nextState.received;
+        if (Object.keys(nextState.choicesObject).length === 0) {
+            if (_.has(classInformation, 'choice')) {
+                let choicesData = [];
+                let choicesCount = classInformation.choice.from.length;
+                _.forEach(classInformation.choice.from, (each, index) =>
+                    controller.matchedNameSearch(each.url)
+                        .then(data => {
+                            let keyName = each.name;
+                            let valueName = data.desc[0];
+                            choicesData.push({ [keyName]: valueName });
+                            if (choicesData.length === choicesCount) {
+                                this.setState({ choicesObject: choicesData });
+                            }
+                        })
+                )
+            }
+        }
+    }
 
     firstSearch = (combo) => {
         //let featureUrl = this.findMatchedURL(fetchedData, 1, combo);
         controller.matchedNameSearch(combo[1])
             .then(data => {
-                console.log("after fetched", data);
                 this.setState({ pages: combo.length - 1, options: combo, current: 1, received: data });
             })
     }
@@ -106,13 +103,21 @@ class Feature extends Component {
     render() {
 
         if (Object.keys(this.state.received).length !== 0) {
-            //console.log("found something", this.state.received);
-            var para = this.state.received.desc.map(function (data, index) {
+            let classInformation = this.state.received;
+            var para = classInformation.desc.map(function (data, index) {
                 return <p key={index}>{data}</p>
             });
             var header = <div>
                 <HeaderTitle classTitle={this.props.classObject.className} levelTitle={this.props.classObject.classLevel}
-                    featureName={this.state.received.name} /> </div>
+                    featureName={classInformation.name} /> </div>;
+        }
+        
+        if(this.state.choicesObject.length !== 0) {
+            var choices = _.map(this.state.choicesObject, function (each,index){
+                let keyName= Object.keys(each).toString();
+                let value= each[keyName];
+                return <div key={index}><p>{keyName}</p><p>{value}</p></div>
+            })
         }
 
         if (this.state.redirect) {
@@ -123,6 +128,7 @@ class Feature extends Component {
             <div>
                 {header}
                 {para}
+                {choices}
                 {this.state.current === 1 && this.state.pages > 1 &&
                     <div>
                         <Button onClick={this.handler.bind(this)} value='/'>Back Page</Button>
