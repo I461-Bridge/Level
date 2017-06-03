@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import data from './../data/classes.json';
 import _ from 'lodash';
-import { Button, SplitButton, MenuItem } from 'react-bootstrap';
+import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
 import { Redirect } from 'react-router-dom';
 
 
@@ -52,7 +52,7 @@ class MainSelection extends Component {
             return <MenuItem eventKey={value} key={value}>Level {value}</MenuItem>
         });
         if (this.state.redirect) {
-            return <Redirect push to='/Spells' />;
+            return <Redirect push to='/Features' />;
         }
 
         return (
@@ -60,13 +60,13 @@ class MainSelection extends Component {
                 <div>
                     <h1>Welcome to Level</h1>
                     <h2>Select a Class</h2>
-                    <SplitButton bsStyle="success" title={this.state.classButtonTitle} id='split-button-basic' onSelect={this.handleClass.bind(this)}>
+                    <DropdownButton bsStyle="success" title={this.state.classButtonTitle} id='split-button-basic' onSelect={this.handleClass.bind(this)}>
                         {availableClasses}
-                    </SplitButton>
+                    </DropdownButton>
                     <h2>Select a Level</h2>
-                    <SplitButton bsStyle="success" title={"Level " + this.state.levelButtonTitle} id='split-button-basic' onSelect={this.handleLevel.bind(this)}>
+                    <DropdownButton bsStyle="success" title={"Level " + this.state.levelButtonTitle} id='split-button-basic' onSelect={this.handleLevel.bind(this)}>
                         {availableLevels}
-                    </SplitButton>
+                    </DropdownButton>
                 </div>
                 <div>
                     <Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}

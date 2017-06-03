@@ -31,19 +31,19 @@ class App extends Component {
       <Router history={this.history}>
         <div className="demo-big-content">
           <Layout fixedHeader>
-            <Header title="Title" >
+            <Header title="Level" >
                 {window.location.pathname !== '/' && <div>
                 <IconButton onClick={this.toggle} name='build' style={{ position: 'absolute', bottom: '92.5%', right: '96%' }} />
                 <Link to='/'><IconButton onClick={this.restart} name='cached' style={{ position: 'absolute', bottom: '92.5%', right: '3%' }} /></Link>
                 </div>
                 }
             </Header>
-            <Drawer title="Title">
+            <Drawer title="Level Navigation">
               {Object.keys(this.state.selectedObject).length > 0 &&
               <Navigation>
                   <Link to='/Features'>Add Features</Link>
                   <Link to='/SpellSlots'>Increase Spell Slots</Link>
-                  <Link to='/Spells'>Add Spells</Link>
+                  <Link to='/Spells'>Add/Modify Spells</Link>
                   <Link to='/Cantrips'>Add Cantrips</Link>
               </Navigation>}
             </Drawer>
