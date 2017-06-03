@@ -28,21 +28,22 @@ class SpellComponent extends Component {
         if (Object.keys(this.props.classObject).length !== 0) {
             let levelCap = 0;
             let spellsArray = [];
-            _.forEach(this.props.classObject.classObject.SpellSlots[this.props.classObject.classLevel - 1], function (value, i) {
+            let selectedLevelSpells = this.props.classObject.classObject.SpellSlots[this.props.classObject.classLevel - 1];
+            _.forEach(selectedLevelSpells, function (value, i) {
                 if (value === 0 && levelCap === 0) {
                     levelCap = i;
+                }
+                if (levelCap === 0 && i === selectedLevelSpells.length - 1) {
+                    levelCap = selectedLevelSpells.length;
                 }
             });
             for (var i = 1; i <= levelCap; i++) {
                 spellsArray.push(this.props.classObject.classObject.Spells[i]);
             }
+            debugger;
             this.setState({ spellList: spellsArray });
         }
     };
-
-    shouldComponentUpdate(nextProps, nextState) {
-        return nextState.spellList !== this.spellList;
-    }
 
     render() {
         if (this.state.spellList.length > 0) {
@@ -64,8 +65,8 @@ class SpellComponent extends Component {
                 {panelsList}
                 </Accordion>
                 <div>
-                    <Button onClick={this.handler.bind(this)} value='/' disabled={this.state.spellList.length === 0}>Back Page</Button>
-                    <Button onClick={this.handler.bind(this)} value='/Features' disabled={this.state.spellList.length === 0}>Next Page</Button>
+                    <Button onClick={this.handler.bind(this)} value='/SpellSlots' disabled={this.state.spellList.length === 0}>Back Page</Button>
+                    <Button onClick={this.handler.bind(this)} value='/Cantrips' disabled={this.state.spellList.length === 0}>Next Page</Button>
                 </div>
             </div>
         );

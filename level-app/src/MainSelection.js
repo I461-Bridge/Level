@@ -60,11 +60,11 @@ class MainSelection extends Component {
                 <div>
                     <h1>Welcome to Level</h1>
                     <h2>Select a Class</h2>
-                    <DropdownButton bsStyle="success" title={this.state.classButtonTitle} id='split-button-basic' onSelect={this.handleClass.bind(this)}>
+                    <DropdownButton bsStyle="success" title={this.state.classButtonTitle} id='dropdown-basic' onSelect={this.handleClass.bind(this)}>
                         {availableClasses}
                     </DropdownButton>
                     <h2>Select a Level</h2>
-                    <DropdownButton bsStyle="success" title={"Level " + this.state.levelButtonTitle} id='split-button-basic' onSelect={this.handleLevel.bind(this)}>
+                    <DropdownButton bsStyle="success" title={"Level " + this.state.levelButtonTitle} id='dropdown-basic' onSelect={this.handleLevel.bind(this)}>
                         {availableLevels}
                     </DropdownButton>
                 </div>

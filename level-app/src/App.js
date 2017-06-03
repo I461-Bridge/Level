@@ -7,7 +7,7 @@ import MainSelection from './MainSelection.js';
 import { Layout, Header, Drawer, Navigation, Content, IconButton } from 'react-mdl';
 import createHistory from 'history/createBrowserHistory';
 import SpellComponent from './SpellComponent.js';
-
+import CantripComponent from './CantripComponent.js';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -44,7 +44,7 @@ class App extends Component {
                   <Link to='/Features'>Add Features</Link>
                   <Link to='/SpellSlots'>Increase Spell Slots</Link>
                   <Link to='/Spells'>Add/Modify Spells</Link>
-                  <Link to='/Cantrips'>Add Cantrips</Link>
+                  <Link to='/Cantrips'>Add/Modify Cantrips</Link>
               </Navigation>}
             </Drawer>
             <Content>
@@ -52,6 +52,7 @@ class App extends Component {
                 <Route exact path='/' component={(props) => <MainSelection handleFound={this.handleFound} />} />
                 <Route path='/Features' component={(props) => <Feature classObject={this.state.selectedObject} />} />
                 <Route path='/Spells' component={(props) => <SpellComponent classObject={this.state.selectedObject} />} />
+                <Route path='/Cantrips' component={(props) => <CantripComponent classObject={this.state.selectedObject} />} />
               </div>
             </Content>
           </Layout>

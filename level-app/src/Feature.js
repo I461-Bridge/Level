@@ -34,7 +34,7 @@ class Feature extends Component {
 
     handler = (event) => {
         let path = event.target.value;
-        _.has(this.props.classObject.classObject, 'Spell') ? this.setState({ redirect: true, path: path }) :
+        _.has(this.props.classObject.classObject, 'SpellSlots') ? this.setState({ redirect: true, path: path }) :
             this.setState({ redirect: true, path: '/Done' });
         if (path === '/') {
             window.location.reload();
@@ -62,7 +62,7 @@ class Feature extends Component {
         if (Object.keys(this.props.classObject).length !== 0) {
             let combo = this.props.classObject.classObject.LevelRecipes[this.props.classObject.classLevel - 1];
             if (combo.length < 2) {
-                _.has(this.props.classObject.classObject, 'Spell') ? this.setState({ redirect: true, path: '/SpellSlots' }) :
+                _.has(this.props.classObject.classObject, 'SpellSlots') ? this.setState({ redirect: true, path: '/SpellSlots' }) :
                     this.setState({ redirect: true, path: '/Done' })
             } else {
                 this.firstSearch(combo);
