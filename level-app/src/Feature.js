@@ -4,7 +4,7 @@ import HeaderTitle from './Header.js';
 import controller from './Controller';
 import { Redirect } from 'react-router-dom';
 import _ from 'lodash';
-import AccordionComponent from './Accordion.js'
+import AccordionComponent from './Accordion.js';
 
 class Feature extends Component {
     constructor(props) {
@@ -102,7 +102,6 @@ class Feature extends Component {
     }
 
     render() {
-
         if (Object.keys(this.state.received).length !== 0) {
             let classInformation = this.state.received;
             var para = classInformation.desc.map(function (data, index) {

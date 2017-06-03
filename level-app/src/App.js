@@ -5,7 +5,8 @@ import Feature from './Feature.js';
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 import MainSelection from './MainSelection.js';
 import { Layout, Header, Drawer, Navigation, Content, IconButton } from 'react-mdl';
-import createHistory from 'history/createBrowserHistory'
+import createHistory from 'history/createBrowserHistory';
+import SpellComponent from './SpellComponent.js';
 
 class App extends Component {
   constructor(props) {
@@ -50,6 +51,7 @@ class App extends Component {
               <div>
                 <Route exact path='/' component={(props) => <MainSelection handleFound={this.handleFound} />} />
                 <Route path='/Features' component={(props) => <Feature classObject={this.state.selectedObject} />} />
+                <Route path='/Spells' component={(props) => <SpellComponent classObject={this.state.selectedObject} />} />
               </div>
             </Content>
           </Layout>

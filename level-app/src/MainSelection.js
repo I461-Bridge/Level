@@ -52,7 +52,7 @@ class MainSelection extends Component {
             return <MenuItem eventKey={value} key={value}>Level {value}</MenuItem>
         });
         if (this.state.redirect) {
-            return <Redirect push to='/Features' />;
+            return <Redirect push to='/Spells' />;
         }
 
         return (
