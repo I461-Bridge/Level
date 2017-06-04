@@ -114,7 +114,7 @@ class Feature extends Component {
             });
             var header = <div>
                 <HeaderTitle classTitle={this.props.classObject.className} levelTitle={this.props.classObject.classLevel}
-                    featureName='Feature(s)' /> </div>;
+                    featureName='Add New Feature(s)' /> </div>;
         } else {
             return <ProgressBar indeterminate />;
         }
@@ -125,6 +125,7 @@ class Feature extends Component {
         return (
             <div className='container'>
                 {header}
+                <p> Step 2 </p>
                 {Object.keys(this.state.received).length !== 0 &&
                     <div>
                         <div className="container"><strong>Feature Name: </strong> {classInformation.name}</div>

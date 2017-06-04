@@ -37,6 +37,7 @@ class SpellSlotsComponent extends Component {
         return (
             <div className='container'>
                 {header}
+                <p> Step 3 </p>
                 {spellSlots}
                 <div>
                     <Button onClick={this.handler.bind(this)} value='/Features' disabled={Object.keys(this.props.classObject).length === 0}>Back Page</Button>
