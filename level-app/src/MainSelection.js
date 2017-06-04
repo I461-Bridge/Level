@@ -57,21 +57,21 @@ class MainSelection extends Component {
 
         return (
             <div className="container">
-                <div>
-                    <h1 className="App">Level</h1>
-                    <h3 className='App'>Updating D&amp;D 5e Characters Made Easy</h3>
+                <div className="App">
+                    <h1>Level</h1>
+                    <h3>Updating D&amp;D 5e Characters Made Easy</h3>
                     <h4>Select a Class</h4>
-                    <DropdownButton bsStyle="success" title={this.state.classButtonTitle} id='dropdown-basic' onSelect={this.handleClass.bind(this)}>
+                    <DropdownButton bsStyle="success" style={{'border-radius':'25px'}} title={this.state.classButtonTitle} id='dropdown-basic' onSelect={this.handleClass.bind(this)}>
                         {availableClasses}
                     </DropdownButton>
                     <h4>Select a Level</h4>
-                    <DropdownButton bsStyle="success" title={"Level " + this.state.levelButtonTitle} id='dropdown-basic' onSelect={this.handleLevel.bind(this)}>
+                    <DropdownButton bsStyle="success" style={{'border-radius':'25px'}} title={"Level " + this.state.levelButtonTitle} id='dropdown-basic' onSelect={this.handleLevel.bind(this)}>
                         {availableLevels}
                     </DropdownButton>
                 </div>
                 <div>
                     <Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}
-                        disabled={!this.state.selectedClass || !this.state.selectedLevel} style={{'marginTop':'20px'}}>
+                        disabled={!this.state.selectedClass || !this.state.selectedLevel} style={{'marginTop':'20px', 'width':'100%', 'border-radius':'25px'}}>
                         Go</Button>
                 </div>
             </div>
