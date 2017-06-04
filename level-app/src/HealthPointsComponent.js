@@ -32,6 +32,14 @@ class HealthPointsComponent extends Component {
             console.log(instructions);
             var diceImage = this.props.classObject.classObject.Dice;
             var proficiency = "";
+            var proficiencyMessage = "";
+            var proficiencyBonus = "";
+            if (parseInt(this.props.classObject.classLevel) % 4 === 1 && this.props.classObject.classLevel !== 1) {
+                proficiencyMessage = "Your Proficiency has increased!"
+                proficiency = "Change your Proficiency Bonus to +";
+                proficiencyBonus = parseInt(this.props.classObject.classLevel/4) + 2
+                console.log(proficiencyBonus)
+            }
 
         }
         if (this.state.redirect) {
@@ -45,6 +53,13 @@ class HealthPointsComponent extends Component {
                 </p>
                 <p>
                     {instructions}
+                </p>
+                <p>
+                    {proficiencyMessage}
+                </p>
+                <p>
+                    {proficiency}
+                    {proficiencyBonus}
                 </p>
                 <img src= {diceImage} alt="Picture of Dice" />
                 <div>
