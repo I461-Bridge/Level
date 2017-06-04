@@ -37,6 +37,13 @@
 .pageHeader {
   font-weight: bold;
 }
+
+.lastPage {
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
