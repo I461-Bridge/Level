@@ -49,7 +49,7 @@ class SpellComponent extends Component {
         if (this.state.spellList.length > 0) {
             var header = <div>
                 <HeaderTitle classTitle={this.props.classObject.className} levelTitle={this.props.classObject.classLevel}
-                    featureName='Add/Modify Spells' /> </div>;
+                    featureName='Spells' /> </div>;
             var panelsList = _.map(this.state.spellList, function (each,index) {
                 let panelTitle = "Spells Level: "+ (index+1);
                 return <Panel header={panelTitle} eventKey={panelTitle} key={index} bsStyle="success"> <SpellsAccordion spellsObject={each}/></Panel>;
