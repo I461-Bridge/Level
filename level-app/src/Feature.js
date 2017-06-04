@@ -5,7 +5,7 @@ import controller from './Controller';
 import { Redirect } from 'react-router-dom';
 import _ from 'lodash';
 import AccordionComponent from './Accordion.js';
-import {ProgressBar} from 'react-mdl';
+import { ProgressBar } from 'react-mdl';
 
 class Feature extends Component {
     constructor(props) {
@@ -35,8 +35,12 @@ class Feature extends Component {
 
     handler = (event) => {
         let path = event.target.value;
-        _.has(this.props.classObject.classObject, 'SpellSlots') ? this.setState({ redirect: true, path: path }) :
-            this.setState({ redirect: true, path: '/Done' });
+        if (!_.has(this.props.classObject.classObject, 'SpellSlots')) {
+            if (path !== '/') {
+                path = '/Done';
+            }
+        }
+        this.setState({ redirect: true, path: path });
         if (path === '/') {
             window.location.reload();
         }
@@ -111,7 +115,7 @@ class Feature extends Component {
                 <HeaderTitle classTitle={this.props.classObject.className} levelTitle={this.props.classObject.classLevel}
                     featureName='Feature(s)' /> </div>;
         } else {
-            return  <ProgressBar indeterminate />;
+            return <ProgressBar indeterminate />;
         }
 
         if (this.state.redirect) {
@@ -120,10 +124,10 @@ class Feature extends Component {
         return (
             <div className='container'>
                 {header}
-                {Object.keys(this.state.received).length !== 0 && 
+                {Object.keys(this.state.received).length !== 0 &&
                     <div>
-                    <div className="container"><strong>Feature Name: </strong> {classInformation.name}</div>
-                    <div className="container pageHeader">Feature Description: {para}</div>
+                        <div className="container"><strong>Feature Name: </strong> {classInformation.name}</div>
+                        <div className="container pageHeader">Feature Description: {para}</div>
                     </div>
                 }
                 {this.state.choicesObject.length !== 0 && <AccordionComponent description={this.state.choicesObject} />}

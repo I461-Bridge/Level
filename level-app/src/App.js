@@ -9,6 +9,7 @@ import createHistory from 'history/createBrowserHistory';
 import SpellComponent from './SpellComponent.js';
 import CantripComponent from './CantripComponent.js';
 import SpellSlotsComponent from './SpellSlotsComponent.js'
+import LastComponent from './LastComponent.js';
 
 class App extends Component {
   constructor(props) {
@@ -56,6 +57,8 @@ class App extends Component {
                 <Route path='/Spells' component={(props) => <SpellComponent classObject={this.state.selectedObject} />} />
                 <Route path='/Cantrips' component={(props) => <CantripComponent classObject={this.state.selectedObject} />} />
                 <Route path='/SpellSlots' component={(props) => <SpellSlotsComponent classObject={this.state.selectedObject} />} />
+                <Route path='/Done' component={(props) => <LastComponent classObject={this.state.selectedObject} />} />
+                
               </div>
             </Content>
           </Layout>
