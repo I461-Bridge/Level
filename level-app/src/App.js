@@ -8,6 +8,8 @@ import { Layout, Header, Drawer, Navigation, Content, IconButton } from 'react-m
 import createHistory from 'history/createBrowserHistory';
 import SpellComponent from './SpellComponent.js';
 import CantripComponent from './CantripComponent.js';
+import SpellSlotsComponent from './SpellSlotsComponent.js'
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -53,6 +55,7 @@ class App extends Component {
                 <Route path='/Features' component={(props) => <Feature classObject={this.state.selectedObject} />} />
                 <Route path='/Spells' component={(props) => <SpellComponent classObject={this.state.selectedObject} />} />
                 <Route path='/Cantrips' component={(props) => <CantripComponent classObject={this.state.selectedObject} />} />
+                <Route path='/SpellSlots' component={(props) => <SpellSlotsComponent classObject={this.state.selectedObject} />} />
               </div>
             </Content>
           </Layout>
