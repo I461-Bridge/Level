@@ -27,7 +27,7 @@ class SpellSlotsComponent extends Component {
             var selectedSpellSlots = this.props.classObject.classObject.SpellSlots[this.props.classObject.classLevel - 1];
             var header = <div>
                 <HeaderTitle classTitle={this.props.classObject.className} levelTitle={this.props.classObject.classLevel}
-                    featureName='Increase Spell Slots' /> </div>
+                    featureName='Step 3: Increase Spell Slots' /> </div>
             var spellSlots = <div> 
                 <SpellTableComponent spellSlots={selectedSpellSlots}/>  </div> 
         }
@@ -37,7 +37,6 @@ class SpellSlotsComponent extends Component {
         return (
             <div className='container'>
                 {header}
-                <p> Step 3 </p>
                 {spellSlots}
                 <div>
                     <Button onClick={this.handler.bind(this)} value='/Features' disabled={Object.keys(this.props.classObject).length === 0}>Back Page</Button>

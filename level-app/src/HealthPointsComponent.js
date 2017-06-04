@@ -25,7 +25,7 @@ class HealthPointsComponent extends Component {
         if (Object.keys(this.props.classObject).length !== 0) {
             var header = <div>
                 <HeaderTitle classTitle={this.props.classObject.className} levelTitle={this.props.classObject.classLevel}
-                    featureName='Increase Hit Points' /> </div>;
+                    featureName='Step 1: Increase Hit Points' /> </div>;
             var modifier = this.props.classObject.classObject.HitPoints;
             console.log(modifier);
             var instructions = this.props.classObject.classObject.HitPointInstructions;
@@ -48,7 +48,6 @@ class HealthPointsComponent extends Component {
         return (
             <div className='container'>
                 {header}
-                <p> Step 1 </p>
                 <p>
                     {modifier}
                 </p>
