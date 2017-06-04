@@ -48,6 +48,7 @@ class HealthPointsComponent extends Component {
         return (
             <div className='container'>
                 {header}
+                <p> Step 1 </p>
                 <p>
                     {modifier}
                 </p>
