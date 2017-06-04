@@ -44,6 +44,9 @@
   top: 50%;
   left: 50%;
 }
+.mdl-layout__header.is-casting-shadow {
+  background-color: #563322;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

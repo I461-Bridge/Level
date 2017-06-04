@@ -70,7 +70,7 @@ class MainSelection extends Component {
                 </div>
                 <div>
                     <Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}
-                        disabled={!this.state.selectedClass || !this.state.selectedLevel}>
+                        disabled={!this.state.selectedClass || !this.state.selectedLevel} style={{'marginTop':'20px'}}>
                         Go</Button>
                 </div>
             </div>
