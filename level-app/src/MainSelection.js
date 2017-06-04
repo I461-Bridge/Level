@@ -58,12 +58,13 @@ class MainSelection extends Component {
         return (
             <div className="container">
                 <div>
-                    <h1>Welcome to Level</h1>
-                    <h2>Select a Class</h2>
+                    <h1 className="App">Level</h1>
+                    <h3 className='App'>Updating D&amp;D 5e Characters Made Easy</h3>
+                    <h4>Select a Class</h4>
                     <DropdownButton bsStyle="success" title={this.state.classButtonTitle} id='dropdown-basic' onSelect={this.handleClass.bind(this)}>
                         {availableClasses}
                     </DropdownButton>
-                    <h2>Select a Level</h2>
+                    <h4>Select a Level</h4>
                     <DropdownButton bsStyle="success" title={"Level " + this.state.levelButtonTitle} id='dropdown-basic' onSelect={this.handleLevel.bind(this)}>
                         {availableLevels}
                     </DropdownButton>
