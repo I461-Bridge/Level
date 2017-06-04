@@ -4,7 +4,7 @@ import HeaderTitle from './Header.js';
 import controller from './Controller';
 import { Redirect } from 'react-router-dom';
 import _ from 'lodash';
-import AccordionComponent from './Accordion.js'
+import AccordionComponent from './Accordion.js';
 
 class Feature extends Component {
     constructor(props) {
@@ -15,7 +15,6 @@ class Feature extends Component {
             current: 0,
             received: {},
             typeName: 'features',
-            links: ['features', 'http://www.dnd5eapi.co/api/features/2'],
             redirect: false,
             path: '',
             fetchedObject: {},
@@ -24,25 +23,25 @@ class Feature extends Component {
     }
     handleNextFeature = (event) => {
         let next = this.state.current + 1;
-        this.setState({ current: next, received: {},choicesObject:[] });
+        this.setState({ current: next, received: {}, choicesObject: [] });
         this.searchForObject(this.state.options[next]);
     };
     handleBackFeature = (event) => {
         let next = this.state.current - 1;
-        this.setState({ current: next, received: {},choicesObject:[] });
+        this.setState({ current: next, received: {}, choicesObject: [] });
         this.searchForObject(this.state.options[next]);
     };
 
     handler = (event) => {
         let path = event.target.value;
-        this.setState({ redirect: true, path: path });
+        _.has(this.props.classObject.classObject, 'SpellSlots') ? this.setState({ redirect: true, path: path }) :
+            this.setState({ redirect: true, path: '/Done' });
         if (path === '/') {
             window.location.reload();
         }
     }
 
     searchForObject = (givenURL) => {
-        console.log("now in API call search for object: " + givenURL);
         if (givenURL !== '') {
             controller.matchedNameSearch(givenURL)
                 .then(data => {
@@ -51,19 +50,20 @@ class Feature extends Component {
         }
     }
 
-    findMatchedURL = (fetched, currentNumber, currentOption) => {
-        let givenFeatureName = currentOption[currentNumber];
-        let foundIndex = _.findIndex(fetched, function (o) { return o.name == givenFeatureName });
-        if (foundIndex !== -1) {
-            return fetched[foundIndex].url;
-        }
-    }
+    // findMatchedURL = (fetched, currentNumber, currentOption) => {
+    //     let givenFeatureName = currentOption[currentNumber];
+    //     let foundIndex = _.findIndex(fetched, function (o) { return o.name == givenFeatureName });
+    //     if (foundIndex !== -1) {
+    //         return fetched[foundIndex].url;
+    //     }
+    // }
 
     componentWillMount() {
         if (Object.keys(this.props.classObject).length !== 0) {
             let combo = this.props.classObject.classObject.LevelRecipes[this.props.classObject.classLevel - 1];
             if (combo.length < 2) {
-                this.setState({ redirect: true, path: '/SpellSlots' })
+                _.has(this.props.classObject.classObject, 'SpellSlots') ? this.setState({ redirect: true, path: '/SpellSlots' }) :
+                    this.setState({ redirect: true, path: '/Done' })
             } else {
                 this.firstSearch(combo);
             }
@@ -94,7 +94,6 @@ class Feature extends Component {
     }
 
     firstSearch = (combo) => {
-        //let featureUrl = this.findMatchedURL(fetchedData, 1, combo);
         controller.matchedNameSearch(combo[1])
             .then(data => {
                 this.setState({ pages: combo.length - 1, options: combo, current: 1, received: data });
@@ -102,7 +101,6 @@ class Feature extends Component {
     }
 
     render() {
-
         if (Object.keys(this.state.received).length !== 0) {
             let classInformation = this.state.received;
             var para = classInformation.desc.map(function (data, index) {
@@ -112,35 +110,35 @@ class Feature extends Component {
                 <HeaderTitle classTitle={this.props.classObject.className} levelTitle={this.props.classObject.classLevel}
                     featureName={classInformation.name} /> </div>;
         }
-        
+
         if (this.state.redirect) {
             return <Redirect push to={this.state.path} />;
         }
         return (
 
-            <div>
+            <div className='container'>
                 {header}
                 {para}
                 {this.state.choicesObject.length !== 0 && <AccordionComponent description={this.state.choicesObject} />}
                 {this.state.current === 1 && this.state.pages > 1 &&
                     <div>
-                        <Button onClick={this.handler.bind(this)} value='/'>Back Page</Button>
-                        <Button onClick={this.handleNextFeature.bind(this)}>Next</Button>
+                        <Button onClick={this.handler.bind(this)} value='/' disabled={Object.keys(this.state.received).length === 0}>Back Page</Button>
+                        <Button onClick={this.handleNextFeature.bind(this)} disabled={Object.keys(this.state.received).length === 0}>Next</Button>
                     </div>}
                 {this.state.current > 1 && this.state.current < this.state.pages &&
                     <div>
-                        <Button onClick={this.handleBackFeature}>Back</Button>
-                        <Button onClick={this.handleNextFeature.bind(this)}>Next</Button>
+                        <Button onClick={this.handleBackFeature} disabled={Object.keys(this.state.received).length === 0}>Back</Button>
+                        <Button onClick={this.handleNextFeature.bind(this)} disabled={Object.keys(this.state.received).length === 0}>Next</Button>
                     </div>}
                 {this.state.current === this.state.pages && this.state.current > 1 &&
                     <div>
                         <Button onClick={this.handleBackFeature}>Back</Button>
-                        <Button onClick={this.handler.bind(this)} value='/SpellSlots'>Next Page</Button>
+                        <Button onClick={this.handler.bind(this)} value='/SpellSlots' disabled={Object.keys(this.state.received).length === 0}>Next Page</Button>
                     </div>}
                 {this.state.pages === 1 &&
                     <div>
-                        <Button onClick={this.handler.bind(this)} value='/'>Back Page</Button>
-                        <Button onClick={this.handler.bind(this)} value='/SpellSlots'>Next Page</Button>
+                        <Button onClick={this.handler.bind(this)} value='/' disabled={Object.keys(this.state.received).length === 0}>Back Page</Button>
+                        <Button onClick={this.handler.bind(this)} value='/SpellSlots' disabled={Object.keys(this.state.received).length === 0}>Next Page</Button>
                     </div>}
             </div>
         );
