@@ -6,8 +6,8 @@ class HeaderTitle extends Component {
         return (
             <div className='container'>
                 <Jumbotron>
-                    <h1>{this.props.classTitle} | Level:{this.props.levelTitle}</h1>
-                    <p>{this.props.featureName}</p>
+                    <h1>{this.props.classTitle}&nbsp;&nbsp;|&nbsp;&nbsp;Level {this.props.levelTitle}</h1>
+                    <p className='pageHeader'>Pick your new {this.props.featureName}</p>
                 </Jumbotron>
             </div>
 

@@ -5,6 +5,7 @@ import controller from './Controller';
 import { Redirect } from 'react-router-dom';
 import _ from 'lodash';
 import AccordionComponent from './Accordion.js';
+import {ProgressBar} from 'react-mdl';
 
 class Feature extends Component {
     constructor(props) {
@@ -102,23 +103,29 @@ class Feature extends Component {
 
     render() {
         if (Object.keys(this.state.received).length !== 0) {
-            let classInformation = this.state.received;
+            var classInformation = this.state.received;
             var para = classInformation.desc.map(function (data, index) {
                 return <p key={index}>{data}</p>
             });
             var header = <div>
                 <HeaderTitle classTitle={this.props.classObject.className} levelTitle={this.props.classObject.classLevel}
-                    featureName={classInformation.name} /> </div>;
+                    featureName='Feature(s)' /> </div>;
+        } else {
+            return  <ProgressBar indeterminate />;
         }
 
         if (this.state.redirect) {
             return <Redirect push to={this.state.path} />;
         }
         return (
-
             <div className='container'>
                 {header}
-                {para}
+                {Object.keys(this.state.received).length !== 0 && 
+                    <div>
+                    <div className="container"><strong>Feature Name: </strong> {classInformation.name}</div>
+                    <div className="container pageHeader">Feature Description: {para}</div>
+                    </div>
+                }
                 {this.state.choicesObject.length !== 0 && <AccordionComponent description={this.state.choicesObject} />}
                 {this.state.current === 1 && this.state.pages > 1 &&
                     <div>

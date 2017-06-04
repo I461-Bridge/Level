@@ -35,7 +35,7 @@ class CantripComponent extends Component {
         if (this.state.cantripSpells.length > 0) {
             var header = <div>
                 <HeaderTitle classTitle={this.props.classObject.className} levelTitle={this.props.classObject.classLevel}
-                    featureName='Add/Modify Cantrips' /> </div>;
+                    featureName='Cantrips' /> </div>;
             let panelTitle = "Available Cantrips :";
             var panelsList = <Panel header={panelTitle} eventKey={panelTitle} bsStyle="success">
                 <SpellsAccordion spellsObject={this.state.cantripSpells} /> </Panel>;
