@@ -1,8 +1,8 @@
 
-var apiURL = 'http://www.dnd5eapi.co/api/';
+var apiURL = 'http://www.dnd5eapi.co/api/spells/?name=';
 var controller = {
   initialSearch: function (query) {
-    return fetch(apiURL + query + '/')
+    return fetch(apiURL + query)
       .then(function (res) {
         if (res.ok) {
           return res.json();

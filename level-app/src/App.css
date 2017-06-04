@@ -21,7 +21,22 @@
 .mdl-layout .mdl-layout__drawer-button{
   display: none;
 }
-
+.popover {
+  max-width: 80%;
+  position: relative;
+}
+.popover p{
+  margin-bottom: 0;
+}
+.btn.btn-default {
+  width: 100%;
+  display: block;
+  margin: 6px;
+  border-radius: 25px;
+}
+.pageHeader {
+  font-weight: bold;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

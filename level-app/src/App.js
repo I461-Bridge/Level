@@ -5,8 +5,9 @@ import Feature from './Feature.js';
 import { BrowserRouter as Router, Route, Link, Redirect } from 'react-router-dom';
 import MainSelection from './MainSelection.js';
 import { Layout, Header, Drawer, Navigation, Content, IconButton } from 'react-mdl';
-import createHistory from 'history/createBrowserHistory'
-
+import createHistory from 'history/createBrowserHistory';
+import SpellComponent from './SpellComponent.js';
+import CantripComponent from './CantripComponent.js';
 class App extends Component {
   constructor(props) {
     super(props);
@@ -30,26 +31,28 @@ class App extends Component {
       <Router history={this.history}>
         <div className="demo-big-content">
           <Layout fixedHeader>
-            <Header title="Title" >
+            <Header title="Level" >
                 {window.location.pathname !== '/' && <div>
                 <IconButton onClick={this.toggle} name='build' style={{ position: 'absolute', bottom: '92.5%', right: '96%' }} />
                 <Link to='/'><IconButton onClick={this.restart} name='cached' style={{ position: 'absolute', bottom: '92.5%', right: '3%' }} /></Link>
                 </div>
                 }
             </Header>
-            <Drawer title="Title">
+            <Drawer title="Level Navigation">
               {Object.keys(this.state.selectedObject).length > 0 &&
               <Navigation>
                   <Link to='/Features'>Add Features</Link>
                   <Link to='/SpellSlots'>Increase Spell Slots</Link>
-                  <Link to='/Spells'>Add Spells</Link>
-                  <Link to='/Cantrips'>Add Cantrips</Link>
+                  <Link to='/Spells'>Add/Modify Spells</Link>
+                  <Link to='/Cantrips'>Add/Modify Cantrips</Link>
               </Navigation>}
             </Drawer>
             <Content>
               <div>
                 <Route exact path='/' component={(props) => <MainSelection handleFound={this.handleFound} />} />
                 <Route path='/Features' component={(props) => <Feature classObject={this.state.selectedObject} />} />
+                <Route path='/Spells' component={(props) => <SpellComponent classObject={this.state.selectedObject} />} />
+                <Route path='/Cantrips' component={(props) => <CantripComponent classObject={this.state.selectedObject} />} />
               </div>
             </Content>
           </Layout>

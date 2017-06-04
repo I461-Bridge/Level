@@ -13,7 +13,7 @@ class AccordionComponent extends Component {
         var list = this.props.description.map(function (d, index) {
             var title = Object.keys(d).toString();
             var description = d[title];
-            return <Panel header = {title} eventKey={title} key={index}>
+            return <Panel header = {title} eventKey={title} key={index} bsStyle='success'>
                         {description}
                    </Panel>;
             }
