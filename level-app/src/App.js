@@ -10,6 +10,7 @@ import SpellComponent from './SpellComponent.js';
 import CantripComponent from './CantripComponent.js';
 import SpellSlotsComponent from './SpellSlotsComponent.js'
 import LastComponent from './LastComponent.js';
+import HealthPointsComponent from './HealthPointsComponent.js'
 
 class App extends Component {
   constructor(props) {
@@ -44,6 +45,7 @@ class App extends Component {
             <Drawer title="Level Navigation">
               {Object.keys(this.state.selectedObject).length > 0 &&
               <Navigation>
+                  <Link to='/HealthPoints'>Increase Health Points</Link>
                   <Link to='/Features'>Add Features</Link>
                   <Link to='/SpellSlots'>Increase Spell Slots</Link>
                   <Link to='/Spells'>Add/Modify Spells</Link>
@@ -53,6 +55,7 @@ class App extends Component {
             <Content>
               <div>
                 <Route exact path='/' component={(props) => <MainSelection handleFound={this.handleFound} />} />
+                <Route path='/HealthPoints' component={(props) => <HealthPointsComponent classObject={this.state.selectedObject} />} />
                 <Route path='/Features' component={(props) => <Feature classObject={this.state.selectedObject} />} />
                 <Route path='/Spells' component={(props) => <SpellComponent classObject={this.state.selectedObject} />} />
                 <Route path='/Cantrips' component={(props) => <CantripComponent classObject={this.state.selectedObject} />} />

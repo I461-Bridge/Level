@@ -36,7 +36,8 @@ class Feature extends Component {
     handler = (event) => {
         let path = event.target.value;
         if (!_.has(this.props.classObject.classObject, 'SpellSlots')) {
-            if (path !== '/') {
+            if (path !== '/HealthPoints') {
+                console.log('last: ',path);
                 path = '/Done';
             }
         }
@@ -133,7 +134,7 @@ class Feature extends Component {
                 {this.state.choicesObject.length !== 0 && <AccordionComponent description={this.state.choicesObject} />}
                 {this.state.current === 1 && this.state.pages > 1 &&
                     <div>
-                        <Button onClick={this.handler.bind(this)} value='/' disabled={Object.keys(this.state.received).length === 0}>Back Page</Button>
+                        <Button onClick={this.handler.bind(this)} value='/HealthPoints' disabled={Object.keys(this.state.received).length === 0}>Back Page</Button>
                         <Button onClick={this.handleNextFeature.bind(this)} disabled={Object.keys(this.state.received).length === 0}>Next</Button>
                     </div>}
                 {this.state.current > 1 && this.state.current < this.state.pages &&
@@ -148,7 +149,7 @@ class Feature extends Component {
                     </div>}
                 {this.state.pages === 1 &&
                     <div>
-                        <Button onClick={this.handler.bind(this)} value='/' disabled={Object.keys(this.state.received).length === 0}>Back Page</Button>
+                        <Button onClick={this.handler.bind(this)} value='/HealthPoints' disabled={Object.keys(this.state.received).length === 0}>Back Page</Button>
                         <Button onClick={this.handler.bind(this)} value='/SpellSlots' disabled={Object.keys(this.state.received).length === 0}>Next Page</Button>
                     </div>}
             </div>

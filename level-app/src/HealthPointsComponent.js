@@ -26,6 +26,13 @@ class HealthPointsComponent extends Component {
             var header = <div>
                 <HeaderTitle classTitle={this.props.classObject.className} levelTitle={this.props.classObject.classLevel}
                     featureName='Increase Hit Points' /> </div>;
+            var modifier = this.props.classObject.classObject.HitPoints;
+            console.log(modifier);
+            var instructions = this.props.classObject.classObject.HitPointInstructions;
+            console.log(instructions);
+            var diceImage = this.props.classObject.classObject.Dice;
+            var proficiency = "";
+
         }
         if (this.state.redirect) {
             return <Redirect push to={this.state.path} />;
@@ -33,9 +40,16 @@ class HealthPointsComponent extends Component {
         return (
             <div className='container'>
                 {header}
+                <p>
+                    {modifier}
+                </p>
+                <p>
+                    {instructions}
+                </p>
+                <img src= {diceImage} alt="Picture of Dice" />
                 <div>
                     <Button onClick={this.handler.bind(this)} value='/' disabled={Object.keys(this.props.classObject).length === 0}>Back Page</Button>
-                    <Button onClick={this.handler.bind(this)} value='/' disabled={Object.keys(this.props.classObject).length === 0}>Next Page</Button>
+                    <Button onClick={this.handler.bind(this)} value='/Features' disabled={Object.keys(this.props.classObject).length === 0}>Next Page</Button>
                 </div>
             </div>
         );
