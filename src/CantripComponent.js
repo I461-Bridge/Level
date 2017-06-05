@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Accordion, Panel } from 'react-bootstrap';
 import HeaderTitle from './Header.js';
-import controller from './Controller';
 import { Redirect } from 'react-router-dom';
 import _ from 'lodash';
-import AccordionComponent from './Accordion.js';
 import SpellsAccordion from './SpellAccordion.js';
 
 

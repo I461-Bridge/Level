@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import './App.css';
 import _ from 'lodash';
 import Feature from './Feature.js';
-import { BrowserRouter as Router, Route, Link, Redirect, HashRouter } from 'react-router-dom';
+import {Route, Link, HashRouter } from 'react-router-dom';
 import MainSelection from './MainSelection.js';
 import { Layout, Header, Drawer, Navigation, Content, IconButton } from 'react-mdl';
-import createHistory from 'history/createBrowserHistory';
 import SpellComponent from './SpellComponent.js';
 import CantripComponent from './CantripComponent.js';
 import SpellSlotsComponent from './SpellSlotsComponent.js'
