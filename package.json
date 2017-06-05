@@ -2,7 +2,7 @@
   "name": "level-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://I461-Bridge.github.io/Level/",
+  "homepage": "http://students.washington.edu/sneak/Level-2/build/",
   "dependencies": {
     "gh-pages": "^1.0.0",
     "jquery": "^3.2.1",
