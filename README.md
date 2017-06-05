@@ -1,4 +1,11 @@
 # Level
+
+## Run Instructions
+This program must be run locally due to API Constraints. 
+Please fork and clone this repository, then in the terminal run **"npm install"** and then **"npm start"**. This will open our webpage in your prefered browser, which you can then use freely.
+Thank you for your patience/flexibility/understanding.
+
+
 **Problem Statement:** 
 
 For an experienced Dungeons and Dragons player, managing a character is easy, but for players new to the game it can be a daunting mess of numbers, dice, and complicated rules. Keeping track of the **many different character stats** can be overwhelming - all of which frequently change throughout the course of a Dungeons and Dragons campaign. In addition, there are so **many different story decisions** that are made by players throughout a Dungeons and Dragons campaign that have to be kept track of.
