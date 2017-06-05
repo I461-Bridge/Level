@@ -2,7 +2,9 @@
 
 ## Run Instructions
 This program must be run locally due to API Constraints. 
+
 Please fork and clone this repository, then in the terminal run **"npm install"** and then **"npm start"**. This will open our webpage in your prefered browser, which you can then use freely.
+
 Thank you for your patience/flexibility/understanding.
 
 ## About
