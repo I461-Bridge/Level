@@ -7,6 +7,9 @@ import _ from 'lodash';
 import AccordionComponent from './Accordion.js';
 import { ProgressBar } from 'react-mdl';
 
+
+let prevPath = '';
+
 class Feature extends Component {
     constructor(props) {
         super(props);
@@ -64,12 +67,23 @@ class Feature extends Component {
     //     }
     // }
 
+    componentWillUnmount() {
+        let pathName = this.state.path;
+        prevPath = pathName;
+    }
     componentWillMount() {
         if (Object.keys(this.props.classObject).length !== 0) {
             let combo = this.props.classObject.classObject.LevelRecipes[this.props.classObject.classLevel - 1];
             if (combo.length < 2) {
-                _.has(this.props.classObject.classObject, 'SpellSlots') ? this.setState({ redirect: true, path: '/SpellSlots' }) :
-                    this.setState({ redirect: true, path: '/Done' })
+                if(_.has(this.props.classObject.classObject, 'SpellSlots')) {
+                    var redirectPath = '/SpellSlots';
+                } else {
+                    redirectPath = '/Done';
+                }
+                if (prevPath === '/SpellSlots') {
+                    redirectPath = '/HealthPoints';
+                }
+                this.setState({ redirect: true, path: redirectPath });
             } else {
                 this.firstSearch(combo);
             }
@@ -107,6 +121,9 @@ class Feature extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect push to={this.state.path} />;
+        }
         if (Object.keys(this.state.received).length !== 0) {
             var classInformation = this.state.received;
             var para = classInformation.desc.map(function (data, index) {
@@ -117,10 +134,6 @@ class Feature extends Component {
                     featureName='Step 2: Add New Feature(s)' /> </div>;
         } else {
             return <ProgressBar indeterminate />;
-        }
-
-        if (this.state.redirect) {
-            return <Redirect push to={this.state.path} />;
         }
         return (
             <div className='container'>

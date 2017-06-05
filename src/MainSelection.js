@@ -44,10 +44,12 @@ class MainSelection extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect push to='/HealthPoints' />;
+        }
         var sortedClass = _.sortBy(data.Classes, (value) => {
             return value.Class;
         });
-        debugger;
         var availableClasses = _.map(sortedClass, (value, index) => {
             var keyname = value.Class;
             return <MenuItem eventKey={keyname} key={index}>{keyname}</MenuItem>
@@ -55,9 +57,6 @@ class MainSelection extends Component {
         var availableLevels = _.map(this.state.levelsArray, (value) => {
             return <MenuItem eventKey={value} key={value}>Level {value}</MenuItem>
         });
-        if (this.state.redirect) {
-            return <Redirect push to='/HealthPoints' />;
-        }
 
         return (
             <div className="container">
