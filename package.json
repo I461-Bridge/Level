@@ -2,6 +2,7 @@
   "name": "level-app",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://i461-bridge.github.io/Level/",
   "dependencies": {
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
