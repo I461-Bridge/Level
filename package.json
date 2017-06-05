@@ -2,17 +2,18 @@
   "name": "level-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://i461-bridge.github.io/Level/",
+  "homepage": "https://I461-Bridge.github.io/Level/",
   "dependencies": {
+    "gh-pages": "^1.0.0",
     "jquery": "^3.2.1",
     "lodash": "^4.17.4",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "whatwg-fetch": "^2.0.3",
     "react-bootstrap": "^0.31.0",
+    "react-dom": "^15.5.4",
     "react-mdl": "^1.10.3",
     "react-router-dom": "^4.1.1",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "json-loader": "^0.5.4",
