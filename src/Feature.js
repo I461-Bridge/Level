@@ -107,6 +107,10 @@ class Feature extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            debugger;
+            return <Redirect push to={this.state.path} />;
+        }
         if (Object.keys(this.state.received).length !== 0) {
             var classInformation = this.state.received;
             var para = classInformation.desc.map(function (data, index) {
@@ -117,10 +121,6 @@ class Feature extends Component {
                     featureName='Step 2: Add New Feature(s)' /> </div>;
         } else {
             return <ProgressBar indeterminate />;
-        }
-
-        if (this.state.redirect) {
-            return <Redirect push to={this.state.path} />;
         }
         return (
             <div className='container'>

@@ -30,6 +30,9 @@ class CantripComponent extends Component {
     };
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect push to={this.state.path} />;
+        }
         if (this.state.cantripSpells.length > 0) {
             var header = <div>
                 <HeaderTitle classTitle={this.props.classObject.className} levelTitle={this.props.classObject.classLevel}
@@ -37,9 +40,6 @@ class CantripComponent extends Component {
             let panelTitle = "Available Cantrips :";
             var panelsList = <Panel header={panelTitle} eventKey={panelTitle} bsStyle="success">
                 <SpellsAccordion spellsObject={this.state.cantripSpells} /> </Panel>;
-        }
-        if (this.state.redirect) {
-            return <Redirect push to={this.state.path} />;
         }
         return (
             <div className='container'>

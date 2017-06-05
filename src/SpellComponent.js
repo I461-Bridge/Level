@@ -38,29 +38,28 @@ class SpellComponent extends Component {
             for (var i = 1; i <= levelCap; i++) {
                 spellsArray.push(this.props.classObject.classObject.Spells[i]);
             }
-            debugger;
             this.setState({ spellList: spellsArray });
         }
     };
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect push to={this.state.path} />;
+        }
         if (this.state.spellList.length > 0) {
             var header = <div>
                 <HeaderTitle classTitle={this.props.classObject.className} levelTitle={this.props.classObject.classLevel}
                     featureName='Step 4: Add Spells' /> </div>;
-            var panelsList = _.map(this.state.spellList, function (each,index) {
-                let panelTitle = "Spells Level: "+ (index+1);
-                return <Panel header={panelTitle} eventKey={panelTitle} key={index} bsStyle="success"> <SpellsAccordion spellsObject={each}/></Panel>;
+            var panelsList = _.map(this.state.spellList, function (each, index) {
+                let panelTitle = "Spells Level: " + (index + 1);
+                return <Panel header={panelTitle} eventKey={panelTitle} key={index} bsStyle="success"> <SpellsAccordion spellsObject={each} /></Panel>;
             })
-        }
-        if (this.state.redirect) {
-            return <Redirect push to={this.state.path} />;
         }
         return (
             <div className='container'>
                 {header}
                 <Accordion>
-                {panelsList}
+                    {panelsList}
                 </Accordion>
                 <div>
                     <Button onClick={this.handler.bind(this)} value='/SpellSlots' disabled={this.state.spellList.length === 0}>Back Page</Button>

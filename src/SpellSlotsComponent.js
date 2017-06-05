@@ -14,7 +14,7 @@ class SpellSlotsComponent extends Component {
         };
     }
     handler = (event) => {
-        let path = event.target.value; 
+        let path = event.target.value;
         this.setState({ redirect: true, path: path });
         if (path === '/') {
             window.location.reload();
@@ -22,16 +22,17 @@ class SpellSlotsComponent extends Component {
     }
 
     render() {
+        if (this.state.redirect) {
+            return <Redirect push to={this.state.path} />;
+        }
         if (Object.keys(this.props.classObject).length !== 0) {
+            console.log("state: ",this.state);
             var selectedSpellSlots = this.props.classObject.classObject.SpellSlots[this.props.classObject.classLevel - 1];
             var header = <div>
                 <HeaderTitle classTitle={this.props.classObject.className} levelTitle={this.props.classObject.classLevel}
                     featureName='Step 3: Increase Spell Slots' /> </div>
-            var spellSlots = <div> 
-                <SpellTableComponent spellSlots={selectedSpellSlots}/>  </div> 
-        }
-        if (this.state.redirect) {
-            return <Redirect push to={this.state.path} />;
+            var spellSlots = <div>
+                <SpellTableComponent spellSlots={selectedSpellSlots} />  </div>
         }
         return (
             <div className='container'>
