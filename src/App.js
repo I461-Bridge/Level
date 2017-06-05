@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import _ from 'lodash';
 import Feature from './Feature.js';
-import { BrowserRouter as Router, Route, Link, Redirect, hashHistory } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Redirect, HashRouter } from 'react-router-dom';
 import MainSelection from './MainSelection.js';
 import { Layout, Header, Drawer, Navigation, Content, IconButton } from 'react-mdl';
 import createHistory from 'history/createBrowserHistory';
@@ -32,7 +32,7 @@ class App extends Component {
   render() {
     console.log(this.state.selectedObject);
     return (
-      <Router history={this.hashHistory}>
+      <HashRouter>
         <div className="demo-big-content">
           <Layout fixedHeader>
             <Header title="Level" >
@@ -66,7 +66,7 @@ class App extends Component {
             </Content>
           </Layout>
         </div>
-      </Router>
+      </HashRouter>
     );
 
   }
