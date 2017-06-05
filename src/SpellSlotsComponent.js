@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Button, Table } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import HeaderTitle from './Header.js';
-import controller from './Controller';
 import { Redirect } from 'react-router-dom';
 import _ from 'lodash';
 import SpellTableComponent from './SpellTable.js'

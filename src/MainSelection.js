@@ -44,7 +44,11 @@ class MainSelection extends Component {
     }
 
     render() {
-        var availableClasses = _.map(data.Classes, (value, index) => {
+        var sortedClass = _.sortBy(data.Classes, (value) => {
+            return value.Class;
+        });
+        debugger;
+        var availableClasses = _.map(sortedClass, (value, index) => {
             var keyname = value.Class;
             return <MenuItem eventKey={keyname} key={index}>{keyname}</MenuItem>
         });

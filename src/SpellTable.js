@@ -3,10 +3,6 @@ import _ from 'lodash';
 import { Table } from 'react-bootstrap';
 
 class SpellTableComponent extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         // Assuming that props format = [2, 0, 0, 0, 0, 0, 0, 0]
         if (Object.keys(this.props).length !== 0) {
@@ -14,7 +10,7 @@ class SpellTableComponent extends Component {
             var spellSlotList = this.props.spellSlots.map(function (d, index) {
                     var spellLevel = index + 1;
                     var spellSlot = d;
-                    return <tr key = {index}> 
+                    return <tr key={index}> 
                             <td>{spellLevel}</td>
                             <td>{spellSlot}</td>
                         </tr>;
