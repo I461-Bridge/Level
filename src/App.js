@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import './App.css';
 import _ from 'lodash';
 import Feature from './Feature.js';
-import {Route, Link, HashRouter } from 'react-router-dom';
+import { Route, Link, HashRouter } from 'react-router-dom';
 import MainSelection from './MainSelection.js';
 import { Layout, Header, Drawer, Navigation, Content, IconButton } from 'react-mdl';
 import SpellComponent from './SpellComponent.js';
 import CantripComponent from './CantripComponent.js';
 import SpellSlotsComponent from './SpellSlotsComponent.js'
 import LastComponent from './LastComponent.js';
-import HealthPointsComponent from './HealthPointsComponent.js'
+import HealthPointsComponent from './HealthPointsComponent.js';
+import {Button, Icon, Modal} from 'react-materialize';
+import $ from 'jquery';
 
 class App extends Component {
   constructor(props) {
@@ -53,6 +55,13 @@ class App extends Component {
             </Drawer>
             <Content>
               <div>
+                <Modal
+                  id = 'one'
+                  header='Modal Header'
+                  trigger={<Button waves='light'>OR ME!</Button>}>
+                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+		incididunt ut labore et dolore magna aliqua.</p>
+                </Modal>
                 <Route exact path='/' component={(props) => <MainSelection handleFound={this.handleFound} />} />
                 <Route path='/HealthPoints' component={(props) => <HealthPointsComponent classObject={this.state.selectedObject} />} />
                 <Route path='/Features' component={(props) => <Feature classObject={this.state.selectedObject} />} />
@@ -60,7 +69,6 @@ class App extends Component {
                 <Route path='/Cantrips' component={(props) => <CantripComponent classObject={this.state.selectedObject} />} />
                 <Route path='/SpellSlots' component={(props) => <SpellSlotsComponent classObject={this.state.selectedObject} />} />
                 <Route path='/Done' component={(props) => <LastComponent classObject={this.state.selectedObject} />} />
-
               </div>
             </Content>
           </Layout>
