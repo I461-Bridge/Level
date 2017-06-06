@@ -2,7 +2,7 @@
   "name": "level-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://students.washington.edu/sneak/Level-2/build/",
+  "homepage": "http://students.washington.edu/sneak/Level/",
   "dependencies": {
     "gh-pages": "^1.0.0",
     "lodash": "^4.17.4",
