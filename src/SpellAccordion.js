@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import { Button, ButtonToolbar, OverlayTrigger, Popover } from 'react-bootstrap';
+//import { Button} from 'react-bootstrap';
 import spells from './../data/spells.json';
+import { Icon, Modal, Button} from 'react-materialize';
 
 class SpellsAccordion extends Component {
     constructor(props) {
@@ -20,7 +21,7 @@ class SpellsAccordion extends Component {
 
     render() {
         if (this.state.spellsList.length > 0) {
-            var list = _.map(this.props.spellsObject,function (d, index) {
+            var list = _.map(this.props.spellsObject, function (d, index) {
                 if (spells[d] !== undefined) {
                     var spellName = d;
                     let description = spells[d];
@@ -32,14 +33,11 @@ class SpellsAccordion extends Component {
                 } else {
                     return null;
                 }
-                let popInfo = <Popover id="popover-positioned-top" title={spellName}>
-                    <div>{paragraphs}</div>
-                </Popover>;
-                return <ButtonToolbar key={index}>
-                    <OverlayTrigger trigger="click" placement="top" overlay={popInfo}>
-                        <Button>{spellName}</Button>
-                    </OverlayTrigger>
-                </ButtonToolbar>;
+                return <Modal
+                    header={spellName} bottomSheet
+                    key={index}
+                    trigger={<Button waves='light'>{spellName}</Button>
+                    }>{paragraphs}</Modal>;
             })
         }
         return (

@@ -140,8 +140,8 @@ class Feature extends Component {
                 {header}
                 {Object.keys(this.state.received).length !== 0 &&
                     <div>
-                        <div className="container"><strong>Feature Name: </strong> {classInformation.name}</div>
-                        <div className="container pageHeader">Feature Description: {para}</div>
+                        <div><strong>Feature Name: </strong> {classInformation.name}</div>
+                        <div className="pageHeader">Feature Description: {para}</div>
                     </div>
                 }
                 {this.state.choicesObject.length !== 0 && <AccordionComponent description={this.state.choicesObject} />}

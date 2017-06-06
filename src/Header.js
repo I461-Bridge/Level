@@ -4,13 +4,12 @@ import { Jumbotron } from 'react-bootstrap';
 class HeaderTitle extends Component {
     render() {
         return (
-            <div className='container'>
+            <div >
                 <Jumbotron>
                     <h1>{this.props.classTitle}&nbsp;&nbsp;|&nbsp;&nbsp;Level {this.props.levelTitle}</h1>
                     <p className='pageHeader'> {this.props.featureName}</p>
                 </Jumbotron>
             </div>
-
         );
     }
 }

@@ -28,13 +28,22 @@
 .popover p{
   margin-bottom: 0;
 }
-
-.btn.btn-default {
+.btn{
+  width:100%;
+  display:block;
+  border-radius: 25px;
+  text-transform: none;
+  margin-bottom: 10px;
+}
+strong{
+  font-weight: bold;
+}
+/*.btn.btn-default {
   width: 100%;
   display: block;
   margin: 6px;
   border-radius: 25px;
-}
+}*/
 .pageHeader {
   font-weight: bold;
 }
