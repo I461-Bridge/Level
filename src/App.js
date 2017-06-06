@@ -4,12 +4,12 @@ import _ from 'lodash';
 import Feature from './Feature.js';
 import {Route, Link, HashRouter } from 'react-router-dom';
 import MainSelection from './MainSelection.js';
-import { Layout, Header, Drawer, Navigation, Content, IconButton } from 'react-mdl';
+import { Layout, Header, Drawer, Navigation, Content, IconButton,Icon } from 'react-mdl';
 import SpellComponent from './SpellComponent.js';
 import CantripComponent from './CantripComponent.js';
 import SpellSlotsComponent from './SpellSlotsComponent.js'
 import LastComponent from './LastComponent.js';
-import HealthPointsComponent from './HealthPointsComponent.js'
+import HealthPointsComponent from './HealthPointsComponent.js';
 
 class App extends Component {
   constructor(props) {
@@ -35,11 +35,8 @@ class App extends Component {
         <div className="demo-big-content">
           <Layout fixedHeader>
             <Header title="Level" >
-              {window.location.pathname !== '/' && <div>
-                <IconButton onClick={this.toggle} name='build' style={{ position: 'absolute', bottom: '92.5%', right: '96%' }} />
-                <Link to='/'><IconButton onClick={this.restart} name='cached' style={{ position: 'absolute', bottom: '92.5%', right: '3%' }} /></Link>
-              </div>
-              }
+                <IconButton onClick={this.toggle} name='dashboard' />
+                <Link to='/'onClick={this.restart}  className='biggerIcon' ><Icon name='cached'/></Link>
             </Header>
             <Drawer title="Level Navigation">
               {Object.keys(this.state.selectedObject).length > 0 &&
