@@ -60,6 +60,13 @@ span.mdl-layout-title{
 .mdl-layout__header.is-casting-shadow {
   background-color: #563322;
 }
+.mdl-button{
+  right: 100%;
+}
+.biggerIcon .material-icons {
+  color: white;
+    font-size: 30px;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
