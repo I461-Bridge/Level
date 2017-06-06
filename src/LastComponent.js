@@ -35,8 +35,8 @@ class LastComponent extends Component {
             {Object.keys(this.props.classObject).length !== 0 &&
                 <div>
                     <p>Congratulations! You are now a Level {this.props.classObject.classLevel} {this.props.classObject.className}!</p>
-                    <Button onClick={this.handler.bind(this)} value='/Cantrips'>Back Page</Button>
-                    <Button onClick={this.handler.bind(this)} value='/'>Level Up Again</Button>
+                    <Button className='navButton' onClick={this.handler.bind(this)} value='/Cantrips'>Back Page</Button>
+                    <Button className='navButton' onClick={this.handler.bind(this)} value='/'>Level Up Again</Button>
                 </div>
             }
         </div>

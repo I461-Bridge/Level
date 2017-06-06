@@ -64,16 +64,16 @@ class MainSelection extends Component {
                     <h1>Level</h1>
                     <h3>Updating D&amp;D 5e Characters Made Easy</h3>
                     <h4>Select a Class</h4>
-                    <DropdownButton bsStyle="success" style={{'borderRadius':'25px'}} title={this.state.classButtonTitle} id='dropdown-basic' onSelect={this.handleClass.bind(this)}>
+                    <DropdownButton className='navButton' style={{'borderRadius':'25px'}} title={this.state.classButtonTitle} id='dropdown-basic' onSelect={this.handleClass.bind(this)}>
                         {availableClasses}
                     </DropdownButton>
                     <h4>Select a Level</h4>
-                    <DropdownButton bsStyle="success" style={{'borderRadius':'25px'}} title={"Level " + this.state.levelButtonTitle} id='dropdown-basic' onSelect={this.handleLevel.bind(this)}>
+                    <DropdownButton className='navButton' style={{'borderRadius':'25px'}} title={"Level " + this.state.levelButtonTitle} id='dropdown-basic' onSelect={this.handleLevel.bind(this)}>
                         {availableLevels}
                     </DropdownButton>
                 </div>
                 <div>
-                    <Button bsStyle='primary' onClick={this.handleSubmit.bind(this)}
+                    <Button className='navButton' onClick={this.handleSubmit.bind(this)}
                         disabled={!this.state.selectedClass || !this.state.selectedLevel} style={{'marginTop':'20px', 'width':'100%', 'borderRadius':'25px'}}>
                         Go</Button>
                 </div>

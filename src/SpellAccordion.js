@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-//import { Button} from 'react-bootstrap';
 import spells from './../data/spells.json';
-import { Icon, Modal, Button} from 'react-materialize';
+import {Modal, Button} from 'react-materialize';
 
 class SpellsAccordion extends Component {
     constructor(props) {

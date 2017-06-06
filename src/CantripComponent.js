@@ -48,8 +48,8 @@ class CantripComponent extends Component {
                     {panelsList}
                 </Accordion>
                 <div>
-                    <Button onClick={this.handler.bind(this)} value='/Spells' disabled={this.state.cantripSpells.length === 0}>Back Page</Button>
-                    <Button onClick={this.handler.bind(this)} value='/Done' disabled={this.state.cantripSpells.length === 0}>Next Page</Button>
+                    <Button className='navButton' onClick={this.handler.bind(this)} value='/Spells' disabled={this.state.cantripSpells.length === 0}>Back Page</Button>
+                    <Button className='navButton' onClick={this.handler.bind(this)} value='/Done' disabled={this.state.cantripSpells.length === 0}>Next Page</Button>
                 </div>
             </div>
         );

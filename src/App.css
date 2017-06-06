@@ -21,19 +21,19 @@
 .mdl-layout .mdl-layout__drawer-button{
   display: none;
 }
-.popover {
-  max-width: 80%;
-  position: relative;
-}
-.popover p{
-  margin-bottom: 0;
-}
 .btn{
   width:100%;
   display:block;
   border-radius: 25px;
   text-transform: none;
   margin-bottom: 10px;
+}
+nav {
+  background-color: transparent;
+  box-shadow: none;
+}
+div.jumbotron {
+  border-radius: 0 !important;
 }
 strong{
   font-weight: bold;
@@ -56,7 +56,9 @@ strong{
 }
 span.mdl-layout-title{
   text-align: center;
+  padding-left:0 !important;
 }
+
 .mdl-layout__header.is-casting-shadow {
   background-color: #563322;
 }
@@ -66,6 +68,17 @@ span.mdl-layout-title{
 .biggerIcon .material-icons {
   color: white;
     font-size: 30px;
+}
+.btn-flat{
+  background-color: #563322;
+  color:white;
+}
+.navButton {
+  background-color: #4CAF50;
+}
+.navButton:hover, .navButton:focus {
+  background-color: #43A047;
+  color:white;
 }
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

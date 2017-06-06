@@ -62,8 +62,8 @@ class HealthPointsComponent extends Component {
                 </p>
                 <img src={diceImage} alt="Picture of Dice" />
                 <div>
-                    <Button onClick={this.handler.bind(this)} value='/' disabled={Object.keys(this.props.classObject).length === 0}>Back Page</Button>
-                    <Button onClick={this.handler.bind(this)} value='/Features' disabled={Object.keys(this.props.classObject).length === 0}>Next Page</Button>
+                    <Button className='navButton' onClick={this.handler.bind(this)} value='/' disabled={Object.keys(this.props.classObject).length === 0}>Back Page</Button>
+                    <Button className='navButton' onClick={this.handler.bind(this)} value='/Features' disabled={Object.keys(this.props.classObject).length === 0}>Next Page</Button>
                 </div>
             </div>
         );

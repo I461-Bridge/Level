@@ -62,8 +62,8 @@ class SpellComponent extends Component {
                     {panelsList}
                 </Accordion>
                 <div>
-                    <Button onClick={this.handler.bind(this)} value='/SpellSlots' disabled={this.state.spellList.length === 0}>Back Page</Button>
-                    <Button onClick={this.handler.bind(this)} value='/Cantrips' disabled={this.state.spellList.length === 0}>Next Page</Button>
+                    <Button className='navButton' onClick={this.handler.bind(this)} value='/SpellSlots' disabled={this.state.spellList.length === 0}>Back Page</Button>
+                    <Button className='navButton' onClick={this.handler.bind(this)} value='/Cantrips' disabled={this.state.spellList.length === 0}>Next Page</Button>
                 </div>
             </div>
         );
