@@ -3,7 +3,7 @@
         {"Class" : "Fighter",
             "HitPoints" : "1d10 + Constitution Modifier",
             "HitPointInstructions" : "Roll a 1d10 (one ten-sided die), then add that plus your Constitution Modifier to your current Hit Point total..",
-            "Dice" : "/../images/d10.png", 
+            "Dice" : "d10.png", 
             "LevelRecipes" : [
                 [1, "http://www.dnd5eapi.co/api/features/131", "http://www.dnd5eapi.co/api/features/138"],
                 [2, "http://www.dnd5eapi.co/api/features/139"],
@@ -30,7 +30,7 @@
         {"Class":"Bard", 
             "HitPoints": "1d8 + Constitution Modifier",
             "HitPointInstructions" : "Roll a 1d8 (one eight-sided die), then add that plus your Constitution Modifier to your current Hit Point total.",
-            "Dice": "/../images/d8.png", 
+            "Dice": "d8.png", 
             "LevelRecipes":[
                 [1, "http://www.dnd5eapi.co/api/features/25", "http://www.dnd5eapi.co/api/features/26"],
                 [2, "http://www.dnd5eapi.co/api/features/27", "http://www.dnd5eapi.co/api/features/28"],
@@ -93,7 +93,7 @@
         {"Class":"Druid", 
             "HitPoints": "1d8 + Constitution Modifier",
             "HitPointInstructions" : "Roll a 1d8 (one eight-sided die), then add that plus your Constitution Modifier to your current Hit Point total.",
-            "Dice": "/../images/d8.png", 
+            "Dice": "d8.png", 
             "LevelRecipes":[
                 [1, "http://www.dnd5eapi.co/api/features/101", "http://www.dnd5eapi.co/api/features/100"],
                 [2, "http://www.dnd5eapi.co/api/features/102", "http://www.dnd5eapi.co/api/features/103", "http://www.dnd5eapi.co/api/features/104"],

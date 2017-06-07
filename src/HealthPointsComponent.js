@@ -3,6 +3,7 @@ import { Button} from 'react-bootstrap';
 import HeaderTitle from './Header.js';
 import { Redirect } from 'react-router-dom';
 import _ from 'lodash';
+import {MediaBox} from 'react-materialize';
 
 class HealthPointsComponent extends Component {
     constructor(props) {
@@ -26,9 +27,7 @@ class HealthPointsComponent extends Component {
                 <HeaderTitle classTitle={this.props.classObject.className} levelTitle={this.props.classObject.classLevel}
                     featureName='Step 1: Increase Hit Points' /> </div>;
             var modifier = this.props.classObject.classObject.HitPoints;
-            console.log(modifier);
             var instructions = this.props.classObject.classObject.HitPointInstructions;
-            console.log(instructions);
             var diceImage = this.props.classObject.classObject.Dice;
             var proficiency = "";
             var proficiencyMessage = "";
@@ -36,8 +35,7 @@ class HealthPointsComponent extends Component {
             if (parseInt(this.props.classObject.classLevel) % 4 === 1 && this.props.classObject.classLevel !== 1) {
                 proficiencyMessage = "Your Proficiency has increased!"
                 proficiency = "Change your Proficiency Bonus to +";
-                proficiencyBonus = parseInt(this.props.classObject.classLevel/4) + 2
-                console.log(proficiencyBonus)
+                proficiencyBonus = parseInt(this.props.classObject.classLevel/4) + 2;
             }
 
         }
@@ -60,7 +58,8 @@ class HealthPointsComponent extends Component {
                     {proficiency}
                     {proficiencyBonus}
                 </p>
-                <img src={diceImage} alt="Picture of Dice" />
+                {Object.keys(this.props.classObject).length !== 0 &&
+                    <MediaBox src={require('../images/'+diceImage)  } caption="Character Dice" width="400"/>}
                 <div>
                     <Button className='navButton' onClick={this.handler.bind(this)} value='/' disabled={Object.keys(this.props.classObject).length === 0}>Back Page</Button>
                     <Button className='navButton' onClick={this.handler.bind(this)} value='/Features' disabled={Object.keys(this.props.classObject).length === 0}>Next Page</Button>
